@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'faraday'
-require 'singleton'
-
 module Tinder
 
   class Client
@@ -15,38 +12,31 @@ module Tinder
 
     class << self
 
-      def send(action, method, *data)
+      def request(action, method, *data)
         http         = Faraday.new(url: endpoint(action))
         http.params  = { lang: 'en' }.merge(data)
         http.headers = { user_agent: USER_AGENT }
-        response     = begin
-          case method
-          when :post
-            http.post
-          when :get
-            http.get
-          end
-        end
+        response     = http.send(method)
         JSON.parse(response.body)
       end
 
       def post(action, data = nil)
-        send(action, :post, data)
+        request(action, :post, data)
       end
 
       def get(action, data = nil)
-        send(action, :get, data)
+        request(action, :get, data)
       end
 
       private
 
-      def headers
+      def headers(access_token)
         {
           'app_version':  '6.9.4',
           'platform':     'ios',
           "content-type": "application/json",
           "User-agent":   "Tinder/7.5.3 (iPhone; iOS 10.3.2; Scale/2.00)",
-          "X-Auth-Token": @access_token
+          "X-Auth-Token": access_token
         }
       end
 
