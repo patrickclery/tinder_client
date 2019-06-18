@@ -1,6 +1,6 @@
 require "tinder_client/version"
 
-module TinderClient
+module Tinder
   class Error < StandardError; end
   # Your code goes here...
 end

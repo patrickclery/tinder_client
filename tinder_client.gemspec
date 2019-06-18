@@ -4,7 +4,7 @@ require "tinder_client/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "tinder_client"
-  spec.version       = TinderClient::VERSION
+  spec.version       = Tinder::VERSION
   spec.authors       = ["Patrick Clery"]
   spec.email         = ["patrick.clery@gmail.com"]
 

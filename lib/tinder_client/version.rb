@@ -1,3 +1,3 @@
-module TinderClient
+module Tinder
   VERSION = "0.1.0"
 end
