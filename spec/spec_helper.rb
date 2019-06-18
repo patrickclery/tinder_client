@@ -1,5 +1,8 @@
 require "bundler/setup"
-require "tinder_client"
+require "tinder"
+require "rspec"
+require 'hashdiff'
+require "webmock"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

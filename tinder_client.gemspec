@@ -1,6 +1,6 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "tinder_client/version"
+require "tinder/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "tinder_client"
@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "This client allow you to login and use your Tinder account"
   spec.description   = %q{A client for Tinder written in Ruby}
-  spec.homepage      = "https://github.com/patrickclery/tinder_client"
+  spec.homepage      = "https://github.com/patrickclery/tinder"
   spec.license       = "MIT"
 
   spec.metadata["homepage_uri"] = spec.homepage
@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "webmock", "~> 3.6.0"
 end
