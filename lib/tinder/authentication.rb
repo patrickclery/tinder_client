@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 module Tinder
+  # This is a Concern for Client
   module Authentication
 
     # @param phone_number String
     def request_code(phone_number)
-      response = post(endpoint('auth/sms/send'),
+      response = post('auth/sms/send',
                       auth_type:    'sms',
                       phone_number: phone_number)
 
-      fail UnexpectedResponse unless response['meta']['status'] == 200 && response['data']['sms_sent']
+      fail UnexpectedResponse unless response.dig('meta', 'status') == 200 && response.dig('data','sms_sent')
+      true
     end
 
     # @return String tinder token

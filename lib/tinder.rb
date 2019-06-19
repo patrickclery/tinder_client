@@ -1,5 +1,4 @@
 require "tinder/version"
-require "tinder/authentication"
 require "tinder/client"
 
 module Tinder

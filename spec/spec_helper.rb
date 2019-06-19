@@ -2,7 +2,7 @@ require "bundler/setup"
 require "tinder"
 require "rspec"
 require 'hashdiff'
-require "webmock"
+require 'webmock/rspec'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -15,3 +15,5 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+WebMock.enable!
