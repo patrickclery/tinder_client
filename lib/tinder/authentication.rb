@@ -20,7 +20,7 @@ module Tinder
                phone_number: phone_number,
                is_update:    false }
 
-      response = post(endpoint('auth/sms/validate'),
+      response = post('auth/sms/send',
                       otp_code:     confirmation_code,
                       phone_number: phone_number,
                       auth_type:    'sms',
