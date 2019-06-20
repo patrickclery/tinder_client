@@ -6,9 +6,12 @@ module Tinder
 
   class Client
     # Always prefer V2 endpoints as the API is less buggy than V1
-    BASE_URI = 'https://api.gotinder.com/v2'
+    BASE_URI  = 'https://api.gotinder.com/v2'
+    ENDPOINTS = {
+      request_code: "#{BASE_URI}/auth/sms/send?auth_type=sms&locale=en",
+      validate:     "#{BASE_URI}/auth/sms/validate?auth_type=sms&locale=en"
+    }
 
-    USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'
     include Singleton
 
     class << self
@@ -16,34 +19,23 @@ module Tinder
 
       attr_accessor :access_token
 
-      def request(action, method, **data)
-        http         = Faraday.new(url: endpoint(action))
-        http.params  = { lang: 'en' }.merge(data)
-        http.headers = { user_agent: USER_AGENT }
-        response     = http.send(method)
+      def request(method, url, data)
+        response = Faraday.send(method, url, data, headers)
         JSON.parse(response.body)
       end
 
-      def post(action, data = nil)
-        request(action, :post, data)
+      def post(url, **data)
+        request(:post, url, data)
       end
 
-      def get(action, data = nil)
-        request(action, :get, data)
-      end
-
-      def endpoint(action, data = {})
-        "#{BASE_URI}/#{action}"
+      def get(url, **data)
+        request(:get, url, data)
       end
 
       # @param phone_number String
       def request_code(phone_number)
-        response = post('auth/sms/send',
-                        auth_type:    'sms',
-                        phone_number: phone_number)
-
-        fail UnexpectedResponse unless response.dig('meta', 'status') == 200 && response.dig('data', 'sms_sent')
-        true
+        response = post(ENDPOINTS[:request_code], phone_number: phone_number)
+        response.dig('data', 'sms_sent') || fail(UnexpectedResponse)
       end
 
       # @return String tinder token
@@ -52,12 +44,7 @@ module Tinder
                  phone_number: phone_number,
                  is_update:    false }
 
-        response = post('auth/sms/send',
-                        otp_code:     confirmation_code,
-                        phone_number: phone_number,
-                        auth_type:    'sms',
-                        is_update:    false)
-
+        response = post(ENDPOINTS[:validate], data)
         @access_token = response.dig('data', 'refresh_token') || fail(UnexpectedResponse)
       end
 
@@ -65,10 +52,9 @@ module Tinder
 
       def headers
         {
-          'app_version':  '6.9.4',
-          'platform':     'ios',
-          "content-type": "application/json",
-          "User-agent":   "Tinder/7.5.3 (iPhone; iOS 10.3.2; Scale/2.00)",
+          "app-version":  "1020352",
+          "platform":     "web",
+          "User-agent":   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
           "X-Auth-Token": @access_token
         }
       end
