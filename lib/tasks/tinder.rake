@@ -48,4 +48,12 @@ namespace :tinder do
     puts "Saved to #{token_path}\n"
   end
 
+  desc 'Fetch my profile'
+  task :profile do
+    client           = Tinder::Client
+    client.api_token = IO.read(token_path).chomp
+    profile          = client.profile
+    puts profile
+  end
+
 end
