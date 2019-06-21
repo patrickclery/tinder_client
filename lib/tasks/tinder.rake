@@ -35,6 +35,7 @@ namespace :tinder do
   task :save_token do
     access_token = fetch_token(ENV['phone_number'].to_s)
     File.open(token_path, 'w') {|f| f.puts(access_token)}
+    puts "Saved to #{token_path}\n"
   end
 
 end
