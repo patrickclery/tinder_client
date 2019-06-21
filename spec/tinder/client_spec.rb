@@ -19,11 +19,18 @@ RSpec.describe Tinder::Client do
   it { should respond_to(:validate).with(2).arguments }
 
   before do
-    stub_request(:post, "https://api.gotinder.com/v2/auth/sms/send?auth_type=sms&lang=en&phone_number=#{phone_number}")
+    stub_request(:post, "https://api.gotinder.com/v2/auth/sms/send?auth_type=sms&locale=en")
+      .with(body: { phone_number: phone_number })
       .to_return(body: { "meta": { "status": 200 }, "data": { "otp_length": 6, "sms_sent": true } }.to_json
       )
 
-    stub_request(:post, "https://api.gotinder.com/v2/auth/sms/send?auth_type=sms&is_update=false&lang=en&otp_code=#{confirmation_code}&phone_number=#{phone_number}")
+    stub_request(:post, "https://api.gotinder.com/v2/auth/sms/validate?auth_type=sms&locale=en")
+      .with(
+        body: {
+          phone_number: phone_number,
+          is_update:    false,
+          otp_code:     confirmation_code
+        })
       .to_return(body: { "meta": { "status": 200 }, "data": { "refresh_token": access_token, "validated": true } }.to_json)
   end
 

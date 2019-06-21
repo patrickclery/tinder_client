@@ -35,7 +35,7 @@ module Tinder
       # @param phone_number String
       def request_code(phone_number)
         response = post(ENDPOINTS[:request_code], phone_number: phone_number)
-        response.dig('data', 'sms_sent') || fail(UnexpectedResponse)
+        response.dig('data', 'sms_sent') || fail(UnexpectedResponse(response))
       end
 
       # @return String tinder token
@@ -45,7 +45,16 @@ module Tinder
                  is_update:    false }
 
         response = post(ENDPOINTS[:validate], data)
-        @access_token = response.dig('data', 'refresh_token') || fail(UnexpectedResponse)
+        @access_token = response.dig('data', 'refresh_token') || fail(UnexpectedResponse(response))
+        @access_token_validated = true
+        @access_token
+      end
+
+      # Throws an error when trying to access an endpoint without a token
+      def endpoint(action)
+        unless @access_token_validated.nil?
+          ENDPOINTS[action].nil? || fail
+        end
       end
 
       private
