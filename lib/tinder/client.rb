@@ -9,7 +9,8 @@ module Tinder
     BASE_URI  = 'https://api.gotinder.com/v2'
     ENDPOINTS = {
       request_code: "#{BASE_URI}/auth/sms/send?auth_type=sms&locale=en",
-      validate:     "#{BASE_URI}/auth/sms/validate?auth_type=sms&locale=en"
+      login:        "https://api.gotinder.com/v2/auth/login/sms?locale=en",
+      validate:     "#{BASE_URI}/auth/sms/validate?auth_type=sms&locale=en",
     }
 
     include Singleton
@@ -17,10 +18,11 @@ module Tinder
     class << self
       include Singleton
 
-      attr_accessor :access_token
+      attr_accessor :api_token
+      attr_accessor :refresh_token
 
       def request(method, url, data)
-        response = Faraday.send(method, url, data, headers)
+        response = Faraday.send(method, url, JSON.generate(data), headers)
         JSON.parse(response.body)
       end
 
@@ -44,27 +46,34 @@ module Tinder
                  phone_number: phone_number,
                  is_update:    false }
 
-        response = post(ENDPOINTS[:validate], data)
-        @access_token = response.dig('data', 'refresh_token') || fail(UnexpectedResponse(response))
-        @access_token_validated = true
-        @access_token
+        response      = post(ENDPOINTS[:validate], data)
+        @refresh_token = response.dig('data', 'refresh_token') || fail(UnexpectedResponse(response))
       end
 
-      # Throws an error when trying to access an endpoint without a token
+      def login(phone_number, refresh_token)
+        data     = { refresh_token: refresh_token, phone_number: phone_number }
+        response = post(ENDPOINTS[:login], data)
+
+        @api_token   = response.dig('data', 'api_token') || fail(UnexpectedResponse(response))
+        @id          = response['data']['_id']
+        @is_new_user = response['data']['is_new_user']
+        @api_token
+      end
+
       def endpoint(action)
-        unless @access_token_validated.nil?
-          ENDPOINTS[action].nil? || fail
-        end
+        ENDPOINTS[action]
       end
 
       private
 
       def headers
         {
-          "app-version":  "1020352",
-          "platform":     "web",
-          "User-agent":   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
-          "X-Auth-Token": @access_token
+          'app_version':  '6.9.4',
+          'platform':     'ios',
+          "content-type": "application/json",
+          "User-agent":   "Tinder/7.5.3 (iPhone; iOS 10.3.2; Scale/2.00)",
+          "Accept":       "application/json",
+          "X-Auth-Token": @api_token
         }
       end
 

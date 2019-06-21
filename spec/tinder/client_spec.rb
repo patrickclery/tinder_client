@@ -6,7 +6,9 @@ RSpec.describe Tinder::Client do
 
   subject { described_class }
 
-  let(:access_token) { "eyJhbGciOiJIUzI1NiJ9.MTc3ODk5MDk4MDM.5q4R0H08rE0Dd9KgxMPp6jcTfIBLCXgEuVZfC9znJTE" }
+  let(:id) { "1a234a56123ab12345123456" }
+  let(:api_token) { "12a3bc45-a123-123a-1a23-1234abc4de5f" }
+  let(:refresh_token) { "xxxxxxxxxxxxxxxxxxxx.xxxxxxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
   let(:confirmation_code) { "123456" }
   let(:phone_number) { "1234567890" }
 
@@ -31,15 +33,26 @@ RSpec.describe Tinder::Client do
           is_update:    false,
           otp_code:     confirmation_code
         })
-      .to_return(body: { "meta": { "status": 200 }, "data": { "refresh_token": access_token, "validated": true } }.to_json)
+      .to_return(body: { "meta": { "status": 200 }, "data": { "refresh_token": refresh_token, "validated": true } }.to_json)
+
+    stub_request(:post, "https://api.gotinder.com/v2/auth/login/sms?locale=en")
+      .with(
+        body: {
+          phone_number:  phone_number,
+          refresh_token: refresh_token
+        })
+      .to_return(body: { "meta": { "status": 200 }, "data": { "_id": id, "api_token": api_token, "refresh_token": refresh_token, "is_new_user": false } }.to_json)
+
   end
 
   context 'User not logged in' do
 
     it 'can login via phone number and confirmation code' do
-      expect(subject.request_code('1234567890')).to be true
-      expect(subject.validate('1234567890', confirmation_code)).to eq access_token
-      expect(Tinder::Client.access_token).to eq(access_token)
+      expect(subject.request_code(phone_number)).to be true
+      expect(subject.validate(phone_number, confirmation_code)).to eq refresh_token
+      expect(subject.refresh_token).to eq(refresh_token)
+      expect(subject.login(phone_number, refresh_token)).to eq api_token
+      expect(subject.api_token).to eq(api_token)
     end
 
   end

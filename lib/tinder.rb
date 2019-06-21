@@ -10,6 +10,7 @@ module Tinder
     end
 
     def message
+      super
       "The response was: #{response}"
     end
   end
