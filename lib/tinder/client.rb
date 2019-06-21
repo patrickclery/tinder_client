@@ -9,10 +9,11 @@ module Tinder
     # Always prefer V2 endpoints as the API is less buggy than V1
     BASE_URI  = 'https://api.gotinder.com/v2'
     ENDPOINTS = {
-      request_code: "#{BASE_URI}/auth/sms/send?auth_type=sms&locale=en",
-      login:        "#{BASE_URI}/auth/login/sms?locale=en",
-      validate:     "#{BASE_URI}/auth/sms/validate?auth_type=sms&locale=en",
-      profile:      "#{BASE_URI}/profile?locale=en"
+      request_code:    "/auth/sms/send?auth_type=sms",
+      login:           "/auth/login/sms",
+      validate:        "/auth/sms/validate?auth_type=sms",
+      profile:         "/profile",
+      recommendations: "/recs/core"
     }
 
     include Singleton
@@ -24,11 +25,6 @@ module Tinder
       attr_accessor :api_token
       attr_accessor :refresh_token
 
-      def request(method, url, data)
-        response = Faraday.send(method, url, JSON.generate(data), headers)
-        JSON.parse(response.body)
-      end
-
       def post(url, **data)
         response = Faraday.post(url, JSON.generate(data), headers)
         JSON.parse(response.body)
@@ -36,7 +32,7 @@ module Tinder
 
       def get(url, **data)
         # GET requests won't get a response using JSON
-        response = Faraday.get(url, data, headers.tap{|h| h.delete("content-type") })
+        response = Faraday.get(url, data, headers.tap { |h| h.delete("content-type") })
         JSON.parse(response.body)
       end
 
@@ -54,7 +50,7 @@ module Tinder
                  phone_number: phone_number,
                  is_update:    false }
 
-        response      = post(ENDPOINTS[:validate], data)
+        response       = post(endpoint(:validate), data)
         @refresh_token = response.dig('data', 'refresh_token') || fail(UnexpectedResponse(response))
       end
 
@@ -63,7 +59,7 @@ module Tinder
       # @return String The API key
       def login(phone_number, refresh_token)
         data     = { refresh_token: refresh_token, phone_number: phone_number }
-        response = post(ENDPOINTS[:login], data)
+        response = post(endpoint(:login), data)
 
         @api_token   = response.dig('data', 'api_token') || fail(UnexpectedResponse(response))
         @id          = response['data']['_id']
@@ -72,7 +68,7 @@ module Tinder
       end
 
       def endpoint(action)
-        ENDPOINTS[action]
+        "#{BASE_URI}#{ENDPOINTS[action]}"
       end
 
       private
