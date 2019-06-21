@@ -3,8 +3,19 @@ require "tinder/client"
 require "json"
 
 module Tinder
-  class Error < StandardError; end
-  class UnexpectedResponse < StandardError; end
-  class ClientNotAuthenticated < StandardError; end
-  # Your code goes here...
+
+  class UnexpectedResponse < StandardError
+    def initialize(response)
+      @response = response
+    end
+
+    def message
+      "The response was: #{response}"
+    end
+  end
+
+  class ClientNotAuthenticated < StandardError;
+  end
+
 end
+
