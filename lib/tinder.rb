@@ -18,5 +18,10 @@ module Tinder
   class ClientNotAuthenticated < StandardError;
   end
 
+  class RateLimited < StandardError;
+  end
+  class NoResultsLeft < StandardError;
+  end
+
 end
 

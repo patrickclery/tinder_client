@@ -13,20 +13,20 @@ RSpec.describe Tinder::Client do
   let(:phone_number) { "1234567890" }
 
   it { should be_a_kind_of(Singleton) }
-  it { should respond_to(:request) }
-  it { should respond_to(:get) }
-  it { should respond_to(:post) }
   it { should respond_to(:endpoint).with(1).argument }
+  it { should respond_to(:feed).with(1).argument }
+  it { should respond_to(:get).with(1).arguments }
+  it { should respond_to(:post).with(1).arguments }
   it { should respond_to(:request_code).with(1).argument }
   it { should respond_to(:validate).with(2).arguments }
 
   before do
-    stub_request(:post, "https://api.gotinder.com/v2/auth/sms/send?auth_type=sms&locale=en")
+    stub_request(:post, "https://api.gotinder.com/v2/auth/sms/send?auth_type=sms")
       .with(body: { phone_number: phone_number })
       .to_return(body: { "meta": { "status": 200 }, "data": { "otp_length": 6, "sms_sent": true } }.to_json
       )
 
-    stub_request(:post, "https://api.gotinder.com/v2/auth/sms/validate?auth_type=sms&locale=en")
+    stub_request(:post, "https://api.gotinder.com/v2/auth/sms/validate?auth_type=sms")
       .with(
         body: {
           phone_number: phone_number,
@@ -35,7 +35,7 @@ RSpec.describe Tinder::Client do
         })
       .to_return(body: { "meta": { "status": 200 }, "data": { "refresh_token": refresh_token, "validated": true } }.to_json)
 
-    stub_request(:post, "https://api.gotinder.com/v2/auth/login/sms?locale=en")
+    stub_request(:post, "https://api.gotinder.com/v2/auth/login/sms")
       .with(
         body: {
           phone_number:  phone_number,
@@ -45,16 +45,12 @@ RSpec.describe Tinder::Client do
 
   end
 
-  context 'User not logged in' do
-
-    it 'can login via phone number and confirmation code' do
-      expect(subject.request_code(phone_number)).to be true
-      expect(subject.validate(phone_number, confirmation_code)).to eq refresh_token
-      expect(subject.refresh_token).to eq(refresh_token)
-      expect(subject.login(phone_number, refresh_token)).to eq api_token
-      expect(subject.api_token).to eq(api_token)
-    end
-
+  it 'can login via phone number and confirmation code' do
+    expect(subject.request_code(phone_number)).to be true
+    expect(subject.validate(phone_number, confirmation_code)).to eq refresh_token
+    expect(subject.refresh_token).to eq(refresh_token)
+    expect(subject.login(phone_number, refresh_token)).to eq api_token
+    expect(subject.api_token).to eq(api_token)
   end
 
 end

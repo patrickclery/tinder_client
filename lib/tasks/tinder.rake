@@ -44,7 +44,7 @@ namespace :tinder do
   desc 'Save an API token to $token_path'
   task :save_token do
     access_token = fetch_token(ENV['phone_number'].to_s)
-    File.open(token_path, 'w') {|f| f.puts(access_token)}
+    File.open(token_path, 'w') { |f| f.puts(access_token) }
     puts "Saved to #{token_path}\n"
   end
 
@@ -54,6 +54,17 @@ namespace :tinder do
     client.api_token = IO.read(token_path).chomp
     profile          = client.profile
     puts profile
+  end
+
+  desc 'Fetch recommendations'
+  task :recommendations do
+    client           = Tinder::Client
+    client.api_token = IO.read(token_path).chomp
+
+    feed = client.feed(:recommendations)
+    feed.each do |people|
+      puts people
+    end
   end
 
 end

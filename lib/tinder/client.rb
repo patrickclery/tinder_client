@@ -2,6 +2,7 @@
 require 'faraday'
 require 'singleton'
 require 'tinder/profile'
+require 'tinder/feed'
 
 module Tinder
 
@@ -38,7 +39,7 @@ module Tinder
 
       # @param phone_number String
       def request_code(phone_number)
-        response = post(ENDPOINTS[:request_code], phone_number: phone_number)
+        response = post(endpoint(:request_code), phone_number: phone_number)
         response.dig('data', 'sms_sent') || fail(UnexpectedResponse(response))
       end
 
