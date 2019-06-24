@@ -7,9 +7,7 @@ RSpec.describe Tinder::Client do
   include WebMock::API
 
   subject do
-    described_class.tap do |client|
-      client.api_token = api_token
-    end
+    described_class.tap { |client| client.api_token = api_token }
   end
 
   context 'User logged in' do
@@ -29,12 +27,28 @@ RSpec.describe Tinder::Client do
       before do
         stub_request(:get, "https://api.gotinder.com/v2/recs/core")
           .to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": results } }))
+          .then.to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": results } }))
+          .then.to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": results } }))
+          .then.to_return(body: JSON.generate({ "error": { "message": "There is no one around you" } }))
+
       end
 
-      it 'raises an exception' do
+      it 'can retrieve 3 collections of results' do
         feed = subject.feed(:recommendations)
         expect(feed).to be_a(Tinder::Feed)
         expect(feed.each).to eq results
+        expect(feed.each).to eq results
+        expect(feed.each).to eq results
+        expect { feed.each }.to raise_error("No Results Left")
+      end
+
+      it 'can use a block to retrieve 3 collections of results' do
+        feed = subject.feed(:recommendations)
+        expect(feed).to be_a(Tinder::Feed)
+        1.upto(4) do |i|
+          expect(feed.each).to eq(results) if i < 4
+          expect { feed.each }.to raise_error("No Results Left") if i == 4
+        end
       end
 
     end
