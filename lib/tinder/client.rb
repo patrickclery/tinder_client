@@ -3,6 +3,7 @@ require 'faraday'
 require 'singleton'
 require 'tinder/profile'
 require 'tinder/feed'
+require 'tinder/updates'
 
 module Tinder
 
@@ -14,7 +15,8 @@ module Tinder
       login:           "/auth/login/sms",
       validate:        "/auth/sms/validate?auth_type=sms",
       profile:         "/profile",
-      recommendations: "/recs/core"
+      recommendations: "/recs/core",
+      updates:         "/updates"
     }
 
     include Singleton

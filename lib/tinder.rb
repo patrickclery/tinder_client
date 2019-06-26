@@ -2,17 +2,16 @@ require "tinder/version"
 require "tinder/client"
 require "json"
 
+require 'dry-struct'
+require 'dry-types'
+
+module Types
+  include Dry.Types
+end
+
 module Tinder
 
   class UnexpectedResponse < StandardError
-    def initialize(response)
-      @response = response
-    end
-
-    def message
-      super
-      "The response was: #{response}"
-    end
   end
 
   class RateLimited < StandardError;

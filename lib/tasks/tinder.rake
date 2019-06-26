@@ -67,4 +67,15 @@ namespace :tinder do
     end
   end
 
+  desc 'Fetch updates'
+  task :updates do
+    client           = Tinder::Client
+    client.api_token = IO.read(token_path).chomp
+
+    updates = client.updates
+    updates.matches.each do |match|
+      puts match
+    end
+  end
+
 end
