@@ -5,12 +5,6 @@ class Dry::Struct
   transform_keys(&:to_sym)
 end
 
-class Hash
-  def keys_to_sym
-    Hash[self.map { |(k, v)| [k.to_sym, v] }]
-  end
-end
-
 module Tinder
 
   class Client
@@ -55,7 +49,7 @@ module Tinder
     end
     attribute :lists, Dry::Types['array']
     attribute :matches, Dry::Types['array'] do
-      attribute :_id, Dry::Types['string'] # This is not always the same as :id
+      attribute :_id, Dry::Types['string']
       attribute :closed, Dry::Types['bool']
       attribute :common_friend_count, Dry::Types['integer']
       attribute :common_like_count, Dry::Types['integer']
