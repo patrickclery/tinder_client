@@ -79,16 +79,6 @@ module Tinder
 
     attribute :matches, Dry::Types['array'].of(Match)
 
-    def parse
-      if match['person'].nil?
-        # It's a message from the active user to someone
-        first     = match['messages'].first
-        tinder_id = (first['from'] == @id ? first['to'] : first['from'])
-      else
-        tinder_id = match['person']['_id']
-      end
-    end
-
   end
 end
 
