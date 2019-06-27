@@ -29,6 +29,15 @@ module Tinder
     end
   end
 
+  class Person < Dry::Struct
+    attribute :bio, Dry::Types['string'].meta(omittable: true)
+    attribute :birth_date, Dry::Types['string']
+    attribute :gender, Dry::Types['integer']
+    attribute :name, Dry::Types['string']
+    attribute :ping_time, Dry::Types['string']
+    attribute :photos, Dry::Types['array']
+  end
+
   # This is a decorator for the hash object of each match
   class Match < Dry::Struct
     attribute :_id, Dry::Types['string'] # This is not always the same as :id
@@ -49,15 +58,7 @@ module Tinder
     attribute :muted, Dry::Types['bool']
     attribute :participants, Dry::Types['array']
     attribute :pending, Dry::Types['bool']
-    attribute :person do
-      attribute :bio, Dry::Types['coercible.string']
-                        .meta(omittable: true)
-      attribute :birth_date, Dry::Types['string']
-      attribute :gender, Dry::Types['integer']
-      attribute :name, Dry::Types['string']
-      attribute :ping_time, Dry::Types['string']
-      attribute :photos, Dry::Types['array']
-    end
+    attribute :person, Person
     attribute :readreceipt, Dry::Types['hash']
     attribute :seen, Dry::Types['hash']
   end
