@@ -63,22 +63,21 @@ module Tinder
     attribute :seen, Dry::Types['hash']
   end
 
-  class Updates
+  class Updates < Dry::Struct
 
-    attr_reader :matches
+    # [ 0] "matches",
+    #   [ 1] "blocks",
+    #   [ 2] "inbox",
+    #   [ 3] "liked_messages",
+    #   [ 4] "harassing_messages",
+    #   [ 5] "lists",
+    #   [ 6] "goingout",
+    #   [ 7] "deleted_lists",
+    #   [ 8] "squads",
+    #   [ 9] "last_activity_date",
+    #   [10] "poll_interval"
 
-    # @param response Array This payload contains all kinds of data used to populate the UI
-    def initialize(response)
-      @matches = parse_matches(response['matches'])
-    end
-
-    private
-
-    def parse_matches(matches)
-      matches.map do |data|
-        Match.new(**data.keys_to_sym)
-      end
-    end
+    attribute :matches, Dry::Types['array'].of(Match)
 
     def parse
       if match['person'].nil?
