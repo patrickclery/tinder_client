@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'dry-struct'
-require 'dry-types'
 
 class Dry::Struct
   transform_keys(&:to_sym)
