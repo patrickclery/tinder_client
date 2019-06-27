@@ -1,8 +1,12 @@
 require "bundler/setup"
 require "tinder"
-require "rspec"
 require 'hashdiff'
+
+require "rspec"
 require 'webmock/rspec'
+
+# Awesome Print init
+require 'awesome_print'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

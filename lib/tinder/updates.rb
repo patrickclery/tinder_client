@@ -2,6 +2,16 @@
 require 'dry-struct'
 require 'dry-types'
 
+class Dry::Struct
+  transform_keys(&:to_sym)
+end
+
+class Hash
+  def keys_to_sym
+    Hash[self.map { |(k, v)| [k.to_sym, v] }]
+  end
+end
+
 module Tinder
 
   class Client
@@ -9,13 +19,13 @@ module Tinder
       # This includes the matches, as well as the messages, so must be parsed
       def updates(since = Time.now)
         response = get("https://api.gotinder.com/updates")
-        updates  = Updates.new(response)
 
         fail 'Connection Timeout' unless response.dig('data', 'timeout').nil?
         fail 'Rate Limited' if response.dig('error', 'message') == 'RATE_LIMITED'
-        fail 'No Results Left' if response.dig('error', 'message') == 'There is no one around you'
         # The next one only occurs without Tinder Plus subscription
-        @matches = response.dig('data', 'matches')
+        fail 'No Results Left' if response.dig('error', 'message') == 'There is no one around you'
+
+        updates = Updates.new(response)
       end
     end
   end
@@ -40,7 +50,15 @@ module Tinder
     attribute :muted, Dry::Types['bool']
     attribute :participants, Dry::Types['array']
     attribute :pending, Dry::Types['bool']
-    attribute :person, Dry::Types['hash']
+    attribute :person do
+      attribute :bio, Dry::Types['coercible.string']
+                        .meta(omittable: true)
+      attribute :birth_date, Dry::Types['string']
+      attribute :gender, Dry::Types['integer']
+      attribute :name, Dry::Types['string']
+      attribute :ping_time, Dry::Types['string']
+      attribute :photos, Dry::Types['array']
+    end
     attribute :readreceipt, Dry::Types['hash']
     attribute :seen, Dry::Types['hash']
   end
@@ -58,8 +76,7 @@ module Tinder
 
     def parse_matches(matches)
       matches.map do |data|
-        match = Hash[data.map { |(k, v)| [k.to_sym, v] }] # Convert hash keys to sym
-        Match.new(**match)
+        Match.new(**data.keys_to_sym)
       end
     end
 
