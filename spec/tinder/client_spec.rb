@@ -14,7 +14,6 @@ RSpec.describe Tinder::Client do
 
   it { should be_a_kind_of(Singleton) }
   it { should respond_to(:endpoint).with(1).argument }
-  it { should respond_to(:feed).with(1).argument }
   it { should respond_to(:get).with(1).arguments }
   it { should respond_to(:post).with(1).arguments }
   it { should respond_to(:request_code).with(1).argument }
