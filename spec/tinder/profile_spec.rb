@@ -1,42 +1,27 @@
 require 'rspec'
 require 'webmock'
 
-RSpec.describe Tinder::Client::Profile do
+RSpec.describe Tinder::Client do
   include WebMock::API
 
   subject { described_class }
 
-  let!(:client) { Tinder::Client }
+  it { should respond_to(:get_active_profile) }
+  it { should respond_to(:get_active_profile).with(0).arguments }
 
-  it { should respond_to(:profile) }
-  it { should respond_to(:profile).with(1).argument }
+  let(:api_token) { "eyJhbGciOiJIUzI1NiJ9.MTc3ODk5MDk4MDM.5q4R0H08rE0Dd9KgxMPp6jcTfIBLCXgEuVZfC9znJTE" }
+  let!(:json) do
+    File.read("spec/fixtures/profile.json")
+  end
 
-  context 'User logged in' do
+  before do
+    subject.api_token = api_token
+    stub_request(:get, "http://api.gotinder.com/v2/profile?include=account,boost,email_settings,instagram,likes,notifications,plus_control,products,purchase,spotify,super_likes,tinder_u,travel,tutorials,user")
+      .to_return(body: json)
+  end
 
-    let(:api_token) { "eyJhbGciOiJIUzI1NiJ9.MTc3ODk5MDk4MDM.5q4R0H08rE0Dd9KgxMPp6jcTfIBLCXgEuVZfC9znJTE" }
-
-    before do
-      client.api_token = access_token
-
-      stub_request(:post, "https://api.gotinder.com/v2/profile")
-        .with(body: { phone_number: phone_number })
-        .to_return(body: { "meta": { "status": 200 }, "data": { "otp_length": 6, "sms_sent": true } }.to_json
-        )
-
-      stub_request(:post, "https://api.gotinder.com/profile")
-        .with(
-          body: {
-            phone_number: phone_number,
-            is_update:    false,
-            otp_code:     confirmation_code
-          })
-        .to_return(body: { "meta": { "status": 200 }, "data": { "refresh_token": access_token, "validated": true } }.to_json)
-    end
-
-    it 'can fetch the active profile' do
-      expect(subject.profile).to be_a(Hash)
-    end
-
+  it 'can fetch the active profile' do
+    expect(subject.get_active_profile).to be_an(Tinder::ActiveProfile)
   end
 
 end

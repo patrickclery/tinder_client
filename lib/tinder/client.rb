@@ -14,28 +14,22 @@ module Tinder
       request_code:    "/auth/sms/send?auth_type=sms",
       login:           "/auth/login/sms",
       validate:        "/auth/sms/validate?auth_type=sms",
-      profile:         "/profile",
       recommendations: "/recs/core",
       updates:         "/updates"
     }
 
-    include Singleton
-
     class << self
-      include Profile
-      include Singleton
-
       attr_accessor :api_token
       attr_accessor :refresh_token
 
       def post(url, **data)
-        response = Faraday.post(url, JSON.generate(data), headers)
+        response = Faraday.post(url, JSON.generate(data), headers(@api_token))
         JSON.parse(response.body)
       end
 
       def get(url, **data)
         # GET requests won't get a response using JSON
-        response = Faraday.get(url, data, headers.tap { |h| h.delete("content-type") })
+        response = Faraday.get(url, data, headers(@api_token).tap { |h| h.delete("content-type") })
         JSON.parse(response.body)
       end
 
@@ -74,16 +68,16 @@ module Tinder
         "#{BASE_URI}#{ENDPOINTS[action]}"
       end
 
-      private
+      protected
 
-      def headers
+      def headers(api_token)
         {
           'app_version':  '6.9.4',
           'platform':     'ios',
           "content-type": "application/json",
           "User-agent":   "Tinder/7.5.3 (iPhone; iOS 10.3.2; Scale/2.00)",
           "Accept":       "application/json",
-          "X-Auth-Token": @api_token
+          "X-Auth-Token": api_token
         }
       end
 
