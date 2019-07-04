@@ -20,7 +20,7 @@ module Tinder
                         "purchase,spotify,super_likes,tinder_u,"\
                         "travel,tutorials,user" }
 
-      response = get("http://api.gotinder.com/v2/profile", data)
+      response = get("https://api.gotinder.com/v2/profile", data)
 
       fail('Unexpected response') if response.dig('data').nil?
 

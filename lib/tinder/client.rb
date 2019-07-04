@@ -2,8 +2,8 @@
 require 'faraday'
 require 'singleton'
 require 'tinder/profile'
-require 'tinder/feed'
-require 'tinder/updates'
+require 'tinder/get_recommended_users'
+require 'tinder/get_updates'
 
 module Tinder
 
@@ -13,9 +13,7 @@ module Tinder
     ENDPOINTS = {
       request_code:    "/auth/sms/send?auth_type=sms",
       login:           "/auth/login/sms",
-      validate:        "/auth/sms/validate?auth_type=sms",
-      recommendations: "/recs/core",
-      updates:         "/updates"
+      validate:        "/auth/sms/validate?auth_type=sms"
     }
 
     class << self

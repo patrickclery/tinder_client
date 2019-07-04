@@ -12,7 +12,7 @@ RSpec.describe Tinder::Client do
   it { should respond_to(:get_active_profile).with(0).arguments }
 
   before do
-    stub_request(:get, "http://api.gotinder.com/v2/profile?include=account,boost,email_settings,instagram,likes,notifications,plus_control,products,purchase,spotify,super_likes,tinder_u,travel,tutorials,user")
+    stub_request(:get, "https://api.gotinder.com/v2/profile?include=account,boost,email_settings,instagram,likes,notifications,plus_control,products,purchase,spotify,super_likes,tinder_u,travel,tutorials,user")
       .to_return(body: json)
   end
 

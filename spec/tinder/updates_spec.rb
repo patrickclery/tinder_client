@@ -1,8 +1,5 @@
 require 'rspec'
 require 'webmock'
-require 'tinder'
-require 'tinder/feed'
-require 'tinder/updates'
 
 RSpec.describe Tinder::Client do
   include WebMock::API
@@ -28,7 +25,7 @@ RSpec.describe Tinder::Client do
     end
 
     it 'can generate an Updates collection' do
-      updates = subject.updates
+      updates = subject.get_updates
       expect(updates).to be_a(Tinder::Updates)
     end
   end

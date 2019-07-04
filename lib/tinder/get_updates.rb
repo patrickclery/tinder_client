@@ -10,7 +10,7 @@ module Tinder
   class Client
     class << self
       # This includes the matches, as well as the messages, so must be parsed
-      def updates(since = Time.now)
+      def get_updates(since = Time.now)
         response = get("https://api.gotinder.com/updates")
 
         fail 'Connection Timeout' unless response.dig('data', 'timeout').nil?
