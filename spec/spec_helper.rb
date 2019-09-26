@@ -1,11 +1,8 @@
 require "bundler/setup"
 require "tinder"
-require 'hashdiff'
-
 require "rspec"
 require 'webmock/rspec'
-
-# Awesome Print init
+require 'hashdiff' # Fix for webmock
 require 'awesome_print'
 
 RSpec.configure do |config|

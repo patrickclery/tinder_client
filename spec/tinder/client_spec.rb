@@ -1,6 +1,3 @@
-require 'rspec'
-require 'webmock'
-
 RSpec.describe Tinder::Client do
   include WebMock::API
 
@@ -12,7 +9,6 @@ RSpec.describe Tinder::Client do
   let(:confirmation_code) { "123456" }
   let(:phone_number) { "1234567890" }
 
-  it { should be_a_kind_of(Singleton) }
   it { should respond_to(:endpoint).with(1).argument }
   it { should respond_to(:get).with(1).arguments }
   it { should respond_to(:post).with(1).arguments }

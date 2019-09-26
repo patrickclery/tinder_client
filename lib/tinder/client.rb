@@ -27,7 +27,7 @@ module Tinder
 
       def get(url, **data)
         # GET requests won't get a response using JSON
-        response = Faraday.get(url, data, headers(@api_token).tap { |h| h.delete("content-type") })
+        response = Faraday.get(url, data, headers(@api_token))
         JSON.parse(response.body)
       end
 

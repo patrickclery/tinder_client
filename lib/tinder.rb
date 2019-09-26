@@ -9,6 +9,10 @@ module Types
   include Dry.Types
 end
 
+require 'tinder'
+require 'tinder/get_recommended_users'
+require 'tinder/get_updates'
+
 module Tinder
 
   class UnexpectedResponse < StandardError

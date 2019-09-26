@@ -61,18 +61,18 @@ namespace :tinder do
     client           = Tinder::Client
     client.api_token = IO.read(token_path).chomp
 
-    feed = client.feed(:recommendations)
-    feed.each do |people|
-      puts people
+    feed = client.get_recommended_users(:recommendations)
+    feed.each do |person|
+      puts person
     end
   end
 
   desc 'Fetch updates'
-  task :updates do
+  task :get_updates do
     client           = Tinder::Client
     client.api_token = IO.read(token_path).chomp
 
-    updates = client.updates
+    updates = client.get_updates
     updates.matches.each do |match|
       puts match
     end
