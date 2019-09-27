@@ -4,6 +4,7 @@ require "rspec"
 require 'webmock/rspec'
 require 'hashdiff' # Fix for webmock
 require 'awesome_print'
+require 'tinder/contexts/default'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

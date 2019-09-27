@@ -1,5 +1,5 @@
 RSpec.describe Tinder::Client do
-  include WebMock::API
+  include_context 'default'
 
   subject do
     described_class.tap { |client| client.api_token = api_token }
