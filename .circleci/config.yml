@@ -1,0 +1,43 @@
+version: 2
+jobs:
+  build:
+    parallelism: 1
+    docker:
+      - image: circleci/ruby:2.6.3
+        environment:
+          BUNDLE_JOBS: 2
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: ~/.cache/bundler
+    steps:
+      - checkout
+      - run:
+          name: bundle lock
+          command: mkdir -p ~/.cache; bundle lock --update
+      - restore_cache:
+          key: bundle-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: bundle install
+          command: bundle check &>/dev/null || bundle install
+      - save_cache:
+          key: bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/.cache/bundler
+      - run:
+          name: rspec
+          path: .
+          command: |
+            mkdir -p ~/rspec
+            bundle exec rspec --profile 10 \
+                              --out ~/rspec/rspec.xml \
+                              --format progress \
+                             $( circleci tests glob "spec/**/*_spec.rb" | \
+                                circleci tests split --split-by=timings )
+      - store_test_results:
+          path: ~/rspec
+      - store_artifacts:
+          path: ~/rspec
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build
