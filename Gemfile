@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem 'bundler'
 gem 'faraday', '~> 0.15.0'
 gem 'hashdiff', ['>= 1.0.0.beta1'] # fix for webmock
 gem 'rspec', '~> 3.8'
