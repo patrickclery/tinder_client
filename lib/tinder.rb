@@ -11,7 +11,6 @@ module Tinder
 
   class UnexpectedResponse < StandardError
   end
-
   class RateLimited < StandardError;
   end
   class ClientNotAuthenticated < StandardError;
