@@ -1,7 +1,6 @@
 RSpec.describe Tinder::Client do
   include_context 'default'
 
-  subject { described_class.tap { |client| client.api_token = api_token } }
   let(:api_token) { "12a3bc45-a123-123a-1a23-1234abc4de5f" }
   let!(:json) { File.read("spec/fixtures/profile.json") }
 
@@ -13,8 +12,11 @@ RSpec.describe Tinder::Client do
       .to_return(body: json)
   end
 
-  it 'can fetch the active profile' do
-    expect(subject.get_active_profile).to be_an(Tinder::ActiveProfile)
+  context 'logged in' do
+    before { subject.api_token = api_token }
+    it 'can fetch the active profile' do
+      expect(subject.get_active_profile).to be_an(Tinder::ActiveProfile)
+    end
   end
 
 end

@@ -13,7 +13,7 @@ module Tinder
   class Client
 
     # @return ActiveProfile
-    def self.get_active_profile
+    def get_active_profile
 
       data = { include: "account,boost,email_settings,instagram," \
                         "likes,notifications,plus_control,products," \

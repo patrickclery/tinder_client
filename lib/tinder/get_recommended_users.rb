@@ -7,26 +7,24 @@ end
 module Tinder
 
   class Client
-    class << self
-      def get_recommended_users(&block)
-        if block_given?
-          yield get_recommended_users && return
-        end
-
-        data = get("https://api.gotinder.com/recs/core")
-
-        fail 'Connection Timeout' unless data.dig('data', 'timeout').nil?
-
-        error_message = data.dig('error', 'message')
-        fail 'Rate Limited' if error_message == 'RATE_LIMITED'
-        return [] if error_message == 'There is no one around you'
-        fail 'Unknown Error' unless error_message.nil?
-
-        results = Array(data.dig('data','results'))
-        return [] if results.first.is_a?(String) && results.first == 'You are out of likes today. Come back later to continue swiping on more people.'
-
-        JSON.parse(results.first).map { |user_data| RecommendedUser.new(user_data) }
+    def get_recommended_users(&block)
+      if block_given?
+        yield get_recommended_users && return
       end
+
+      data = get("https://api.gotinder.com/recs/core")
+
+      fail 'Connection Timeout' unless data.dig('data', 'timeout').nil?
+
+      error_message = data.dig('error', 'message')
+      fail 'Rate Limited' if error_message == 'RATE_LIMITED'
+      return [] if error_message == 'There is no one around you'
+      fail 'Unknown Error' unless error_message.nil?
+
+      results = Array(data.dig('data', 'results'))
+      return [] if results.first.is_a?(String) && results.first == 'You are out of likes today. Come back later to continue swiping on more people.'
+
+      JSON.parse(results.first).map { |user_data| RecommendedUser.new(user_data) }
     end
   end
 

@@ -1,7 +1,6 @@
 RSpec.describe Tinder::Client do
   include_context 'default'
 
-  subject(:client) { described_class.tap { |c| c.api_token = api_token } }
   let(:api_token) { "12a3bc45-a123-123a-1a23-1234abc4de5f" }
   let!(:results) { File.read("spec/fixtures/recommendations_1.json") }
 

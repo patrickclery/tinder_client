@@ -6,6 +6,8 @@ require 'dry-types'
 require 'tinder'
 require 'tinder/get_recommended_users'
 require 'tinder/get_updates'
+require 'tinder/like'
+require 'tinder/pass'
 
 module Tinder
 
