@@ -1,0 +1,426 @@
+{
+  "meta": {
+    "status": 200
+  },
+  "data": {
+    "client_resources": {
+      "rate_card": {
+        "carousel": [
+          {
+            "slug": "boost"
+          },
+          {
+            "slug": "unlimited_likes"
+          },
+          {
+            "slug": "super_like"
+          },
+          {
+            "slug": "no_ads"
+          },
+          {
+            "slug": "undo"
+          },
+          {
+            "slug": "passport"
+          },
+          {
+            "slug": "who_sees_you"
+          },
+          {
+            "slug": "your_profile"
+          }
+        ]
+      },
+      "plus_screen": []
+    },
+    "account": {
+      "fireboarding": true,
+      "email_prompt_required": false,
+      "email_prompt_dismissible": false,
+      "email_prompt_show_marketing_opt_in": true,
+      "email_prompt_show_strict_opt_in": false
+    },
+    "sexual_orientations": {
+      "enabled": true,
+      "excluded_orientations": [
+        "gay",
+        "str",
+        "les"
+      ],
+      "orientations": [
+        {
+          "id": "str",
+          "name": "Straight"
+        },
+        {
+          "id": "gay",
+          "name": "Gay"
+        },
+        {
+          "id": "les",
+          "name": "Lesbian"
+        },
+        {
+          "id": "bi",
+          "name": "Bisexual"
+        },
+        {
+          "id": "asex",
+          "name": "Asexual"
+        },
+        {
+          "id": "demi",
+          "name": "Demisexual"
+        },
+        {
+          "id": "pan",
+          "name": "Pansexual"
+        },
+        {
+          "id": "qur",
+          "name": "Queer"
+        },
+        {
+          "id": "ques",
+          "name": "Questioning"
+        }
+      ],
+      "is_pride_flame_enabled": true
+    },
+    "credit_card": {
+      "variant": 2,
+      "price_tos_on_top": false
+    },
+    "boost": {
+      "enabled": false,
+      "duration": 1800000,
+      "intro_multiplier": 10,
+      "use_new_copy": false
+    },
+    "super_boost": {
+      "enabled": false,
+      "duration": 10800000,
+      "intro_multiplier": 100,
+      "peak_hours_start_h": 17,
+      "peak_hours_start_m": 0,
+      "peak_hours_duration": 18000000,
+      "variant": 0,
+      "p1": false
+    },
+    "readreceipts": {
+      "enabled": false
+    },
+    "fast_match": {
+      "enabled": true,
+      "preview_minimum_time": 180000,
+      "notif_options": [
+        0,
+        1,
+        3,
+        10
+      ],
+      "notif_defaults": 1,
+      "new_count_fetch_interval": 10000,
+      "boost_new_count_fetch_interval": 2000,
+      "new_count_threshold": 99,
+      "polling_mode": 1,
+      "entry_point": true,
+      "controlla_optimization": false,
+      "use_teaser_endpoint": true
+    },
+    "gold_homepage": {
+      "enabled": false
+    },
+    "top_picks": {
+      "enabled": true,
+      "local_daily_enabled": true,
+      "local_daily_msg": "Your daily Top Picks are ready. 💎 Tap to view.",
+      "local_daily_offsets": {
+        "offset0": -1,
+        "offset1": 31644079,
+        "offset2": 46044079,
+        "offset3": 64044079
+      },
+      "free_daily": true,
+      "num_free_rated_limit": 1,
+      "refresh_interval": 86400000,
+      "lookahead": 7,
+      "post_swipe_paywall": false
+    },
+    "intro_pricing": {
+      "enabled": true
+    },
+    "paywall": {
+      "full_price": true,
+      "e1": true,
+      "e2": false,
+      "bouncer_avatar": true,
+      "pbls": false,
+      "show_likes_count_in_bouncer": false,
+      "e3": 2,
+      "e4": 2
+    },
+    "merchandising": {
+      "gold_v1_enabled": false,
+      "gold_v2_enabled": false,
+      "gamepad_counter_variant": "control"
+    },
+    "purchase": {
+      "new_google_purchase": false,
+      "new_cc_purchase": false
+    },
+    "recs": {
+      "card_replay": false
+    },
+    "tinder_plus": {
+      "enabled": true,
+      "discount": true
+    },
+    "super_like": {
+      "enabled": true,
+      "alc_mode": 1
+    },
+    "profile": {
+      "can_edit_jobs": true,
+      "can_edit_schools": true,
+      "can_edit_email": true,
+      "can_add_photos_from_facebook": false,
+      "can_show_common_connections": false,
+      "school_name_max_length": 128,
+      "job_title_max_length": 128,
+      "company_name_max_length": 128
+    },
+    "select": {
+      "enabled": false,
+      "recs_enabled": false,
+      "invited": false
+    },
+    "feedback": {
+      "rate_app": true
+    },
+    "typing_indicator": {
+      "typing_heartbeat": 2000,
+      "typing_ttl": 5000
+    },
+    "places": {
+      "available": false,
+      "places_ui": "list"
+    },
+    "terms_of_service": {
+      "enabled": false
+    },
+    "swipe_surge": {
+      "enabled": true,
+      "in_swipe_surge": false
+    },
+    "crm_inbox": {
+      "enabled": true
+    },
+    "background_location": {
+      "enabled": false
+    },
+    "levers": {
+      "profile.custom_gender": {
+        "p_id": "",
+        "value": false
+      },
+      "ads.cadence": {
+        "p_id": "",
+        "value": 20
+      },
+      "ads.messages_between_sponsored_message": {
+        "p_id": "",
+        "value": 0
+      },
+      "ads.sponsored_message_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "profile.country_custom_gender": {
+        "p_id": "",
+        "value": "USA"
+      },
+      "chat.vinyl_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "chat.is_dm_analytics_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "chat.vinyl_message_display_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "app.reporting_v3_variant": {
+        "p_id": "",
+        "value": 0
+      },
+      "stories.is_snapchat_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "reporting_v3_variant": {
+        "p_id": "",
+        "value": 0
+      },
+      "recs.is_merge_rec_like_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "sort_order_default_yammer": {
+        "p_id": "",
+        "value": "recent"
+      },
+      "reporting.reporting_v3_variant": {
+        "p_id": "",
+        "value": 0
+      },
+      "spotify.is_enabled": {
+        "p_id": "8f32394ba87abfd8993e1f51c7d9e23f",
+        "value": true
+      },
+      "reporting.reporting_v3_feed_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "app.phoenix_test_lever": {
+        "p_id": "",
+        "value": false
+      },
+      "swipe_surge.is_swipe_surge_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "reporting.reporting_v3_chat_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "matches.new_matches_portrait_size_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "app.is_analytics_gzip_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "ads.google_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "profile.custom_gender_country": {
+        "p_id": "",
+        "value": ""
+      },
+      "tinder_u.verification_method": {
+        "p_id": "",
+        "value": "email"
+      },
+      "ads.unified_enabled": {
+        "p_id": "",
+        "value": true
+      },
+      "profile.custom_gender_available": {
+        "p_id": "",
+        "value": false
+      },
+      "resortable_yammer": {
+        "p_id": "",
+        "value": false
+      },
+      "ads.fan_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "app.reporting_v3_feed_enabled": {
+        "p_id": "091a150fa0c437dedd73ebccb4411513",
+        "value": false
+      },
+      "profile.custom_gender_country_key": {
+        "p_id": "",
+        "value": "USA"
+      },
+      "onboarding.tinder_rules_on": {
+        "p_id": "",
+        "value": false
+      },
+      "card_info_order": {
+        "p_id": "",
+        "value": "identity_first"
+      },
+      "chat.giphy_pingback_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "chat.message_reporting_message_count": {
+        "p_id": "",
+        "value": 3
+      },
+      "chat.message_reporting_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "matches.cell_style": {
+        "p_id": "",
+        "value": 0
+      },
+      "chat.message_reporting_prompt_count": {
+        "p_id": "",
+        "value": 10
+      },
+      "ads.days_between_sponsored_message": {
+        "p_id": "",
+        "value": 0
+      },
+      "bitmoji.bitmoji_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "ads.fan_placement_id": {
+        "p_id": "",
+        "value": "464891386855067_1485975844746611"
+      },
+      "reporting.reporting_v3_match_list_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "chat.gif_trending_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "chat.tenor_gif_provider_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "matches.rewrite_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "chat.is_analytics_v2_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "ads.promo_enabled": {
+        "p_id": "",
+        "value": true
+      },
+      "ads.inmobi_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "session.is_paginated_updates_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "ads.secondary_cadence": {
+        "p_id": "",
+        "value": 30
+      },
+      "ads.nvs_video_tap_enabled": {
+        "p_id": "",
+        "value": true
+      }
+    }
+  }
+}
