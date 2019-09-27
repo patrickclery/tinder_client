@@ -1,6 +1,3 @@
-require 'rspec'
-require 'webmock'
-
 RSpec.describe Tinder::Client do
   include WebMock::API
 
