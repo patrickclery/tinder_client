@@ -36,10 +36,10 @@
     },
     "account": {
       "fireboarding": true,
-      "email_prompt_required": false,
-      "email_prompt_dismissible": false,
+      "email_prompt_show_strict_opt_in": false,
       "email_prompt_show_marketing_opt_in": true,
-      "email_prompt_show_strict_opt_in": false
+      "email_prompt_required": true,
+      "email_prompt_dismissible": false
     },
     "sexual_orientations": {
       "enabled": true,
@@ -86,7 +86,7 @@
           "name": "Questioning"
         }
       ],
-      "is_pride_flame_enabled": true
+      "is_pride_flame_enabled": false
     },
     "credit_card": {
       "variant": 2,
@@ -106,7 +106,10 @@
       "peak_hours_start_m": 0,
       "peak_hours_duration": 18000000,
       "variant": 0,
-      "p1": false
+      "members_only_text": "Gold and Plus Members only.",
+      "p1": false,
+      "entry_gold_home": false,
+      "entry_upgrade": false
     },
     "readreceipts": {
       "enabled": false
@@ -138,9 +141,9 @@
       "local_daily_msg": "Your daily Top Picks are ready. 💎 Tap to view.",
       "local_daily_offsets": {
         "offset0": -1,
-        "offset1": 31644079,
-        "offset2": 46044079,
-        "offset3": 64044079
+        "offset1": 31122340,
+        "offset2": 45522340,
+        "offset3": 63522340
       },
       "free_daily": true,
       "num_free_rated_limit": 1,
@@ -176,6 +179,11 @@
     "tinder_plus": {
       "enabled": true,
       "discount": true
+    },
+    "subscription": {
+      "renewal_banner_title": "Your subscription is about to expire!",
+      "renewal_banner_gold_body": "Tap to continue experiencing Gold",
+      "renewal_banner_plus_body": "Tap to continue experiencing Plus"
     },
     "super_like": {
       "enabled": true,
@@ -214,6 +222,7 @@
       "enabled": true,
       "in_swipe_surge": false
     },
+    "traveling": {},
     "crm_inbox": {
       "enabled": true
     },
@@ -221,10 +230,6 @@
       "enabled": false
     },
     "levers": {
-      "profile.custom_gender": {
-        "p_id": "",
-        "value": false
-      },
       "ads.cadence": {
         "p_id": "",
         "value": 20
@@ -233,17 +238,37 @@
         "p_id": "",
         "value": 0
       },
+      "session.in_app_rating_consecutive_login_enabled": {
+        "p_id": "",
+        "value": false
+      },
       "ads.sponsored_message_enabled": {
         "p_id": "",
         "value": false
       },
-      "profile.country_custom_gender": {
+      "experiences.theme_id": {
         "p_id": "",
-        "value": "USA"
+        "value": ""
+      },
+      "identity.emailcollection_autofill_enabled": {
+        "p_id": "cccccccccccccccccccccccccccccccc",
+        "value": false
+      },
+      "purchases.checkout_form_variation_enabled": {
+        "p_id": "44444444444444444444444444444444",
+        "value": false
+      },
+      "profile.n_media_enabled": {
+        "p_id": "22222222222222222222222222222222",
+        "value": false
       },
       "chat.vinyl_enabled": {
         "p_id": "",
         "value": false
+      },
+      "superlike.body_copy_variant": {
+        "p_id": "22222222222222222222222222222222",
+        "value": 2
       },
       "chat.is_dm_analytics_enabled": {
         "p_id": "",
@@ -253,7 +278,19 @@
         "p_id": "",
         "value": false
       },
+      "trust.selfie_verification_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "subscription.has_subscription": {
+        "p_id": "22222222222222222222222222222222",
+        "value": true
+      },
       "app.reporting_v3_variant": {
+        "p_id": "",
+        "value": 0
+      },
+      "subscription.renewal_banner_duration": {
         "p_id": "",
         "value": 0
       },
@@ -261,29 +298,61 @@
         "p_id": "",
         "value": false
       },
-      "reporting_v3_variant": {
+      "recs.is_tappy_autoadvancing": {
         "p_id": "",
-        "value": 0
+        "value": false
       },
       "recs.is_merge_rec_like_enabled": {
         "p_id": "",
         "value": false
       },
-      "sort_order_default_yammer": {
+      "profile.client_side_account_reset_enabled": {
         "p_id": "",
-        "value": "recent"
+        "value": false
+      },
+      "recs.tappy_v2_5_enabled": {
+        "p_id": "",
+        "value": true
+      },
+      "swipe_surge.live_count_available": {
+        "p_id": "",
+        "value": false
+      },
+      "purchases.credit_card_launcher_v2_enabled": {
+        "p_id": "",
+        "value": false
       },
       "reporting.reporting_v3_variant": {
         "p_id": "",
         "value": 0
       },
+      "feed.reactions_v2": {
+        "p_id": "",
+        "value": false
+      },
+      "subscription.renewal_banner_threshold": {
+        "p_id": "",
+        "value": 0
+      },
       "spotify.is_enabled": {
-        "p_id": "8f32394ba87abfd8993e1f51c7d9e23f",
+        "p_id": "22222222222222222222222222222222",
+        "value": true
+      },
+      "purchases.discounting_enabled": {
+        "p_id": "",
         "value": true
       },
       "reporting.reporting_v3_feed_enabled": {
         "p_id": "",
         "value": false
+      },
+      "chat.contact_card_message_display_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "top_picks.local_daily_offset": {
+        "p_id": "",
+        "value": "offset2"
       },
       "app.phoenix_test_lever": {
         "p_id": "",
@@ -291,7 +360,19 @@
       },
       "swipe_surge.is_swipe_surge_enabled": {
         "p_id": "",
+        "value": true
+      },
+      "profile.server_provided_media_ids_enabled": {
+        "p_id": "",
         "value": false
+      },
+      "onboarding.bio_variant": {
+        "p_id": "",
+        "value": 0
+      },
+      "session.in_app_rating_consecutive_login_variant": {
+        "p_id": "",
+        "value": 0
       },
       "reporting.reporting_v3_chat_enabled": {
         "p_id": "",
@@ -301,7 +382,51 @@
         "p_id": "",
         "value": false
       },
+      "ads.deep_link_ads_enabled": {
+        "p_id": "",
+        "value": true
+      },
+      "identity.email_collection_prompt": {
+        "p_id": "22222222222222222222222222222222",
+        "value": true
+      },
+      "media.min_duration_to_retain_after_discard": {
+        "p_id": "",
+        "value": 1000
+      },
+      "superlike.cta_copy_variant": {
+        "p_id": "22222222222222222222222222222222",
+        "value": 0
+      },
+      "recs.is_settings_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "chat.is_typing_indicator_morph_animation_enabled": {
+        "p_id": "",
+        "value": true
+      },
+      "profile.n_media_number": {
+        "p_id": "",
+        "value": 18
+      },
+      "recs.is_v1_analytics_deprecated": {
+        "p_id": "",
+        "value": false
+      },
+      "chat.is_typing_indicator_enabled": {
+        "p_id": "",
+        "value": true
+      },
       "app.is_analytics_gzip_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "swipe_surge.theme_id": {
+        "p_id": "",
+        "value": ""
+      },
+      "feed.feed_reactions_v2": {
         "p_id": "",
         "value": false
       },
@@ -309,23 +434,47 @@
         "p_id": "",
         "value": false
       },
-      "profile.custom_gender_country": {
+      "experiences.is_profile_enabled": {
         "p_id": "",
-        "value": ""
+        "value": false
       },
       "tinder_u.verification_method": {
         "p_id": "",
         "value": "email"
       },
-      "ads.unified_enabled": {
-        "p_id": "",
-        "value": true
-      },
-      "profile.custom_gender_available": {
+      "recs.is_analytics_v2_enabled": {
         "p_id": "",
         "value": false
       },
-      "resortable_yammer": {
+      "ads.unified_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "chat.composeflow_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "profile.custom_gender_available": {
+        "p_id": "",
+        "value": true
+      },
+      "superlike.is_superlikeable_enabled": {
+        "p_id": "",
+        "value": true
+      },
+      "likes_you.is_polling_enabled": {
+        "p_id": "",
+        "value": true
+      },
+      "matches.is_yammer_recommended_enabled": {
+        "p_id": "",
+        "value": true
+      },
+      "chat.compose_dm_tooltip_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "chat.contact_card_enabled": {
         "p_id": "",
         "value": false
       },
@@ -333,23 +482,71 @@
         "p_id": "",
         "value": false
       },
+      "paywall.localized_boost_text_index": {
+        "p_id": "",
+        "value": 0
+      },
       "app.reporting_v3_feed_enabled": {
-        "p_id": "091a150fa0c437dedd73ebccb4411513",
+        "p_id": "22222222222222222222222222222222",
         "value": false
       },
       "profile.custom_gender_country_key": {
         "p_id": "",
         "value": "USA"
       },
+      "experiences.is_full_updates_paused": {
+        "p_id": "",
+        "value": false
+      },
+      "boost.super_boost_enabled": {
+        "p_id": "",
+        "value": true
+      },
+      "app.is_notification_service_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "media.min_buffer_duration_to_start": {
+        "p_id": "",
+        "value": 2000
+      },
+      "paywall.localized_boost_region": {
+        "p_id": "",
+        "value": ""
+      },
+      "media.bandwidth_fraction": {
+        "p_id": "",
+        "value": 0.75
+      },
       "onboarding.tinder_rules_on": {
         "p_id": "",
         "value": false
       },
-      "card_info_order": {
+      "session.in_app_rating_consecutive_login_days": {
         "p_id": "",
-        "value": "identity_first"
+        "value": 7
+      },
+      "recs.tappy_autoadvance_seconds": {
+        "p_id": "",
+        "value": 5
+      },
+      "recs.is_new_user_badge_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "experiences.is_video_error_overlay_enabled": {
+        "p_id": "",
+        "value": true
+      },
+      "app.test_account_reset_targeting": {
+        "p_id": "",
+        "value": false
       },
       "chat.giphy_pingback_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "is_yammer_enabled": {
         "p_id": "",
         "value": false
       },
@@ -357,21 +554,57 @@
         "p_id": "",
         "value": 3
       },
+      "experiences.is_live_count_enabled": {
+        "p_id": "",
+        "value": false
+      },
       "chat.message_reporting_enabled": {
         "p_id": "",
         "value": false
+      },
+      "experiences.story_id": {
+        "p_id": "",
+        "value": ""
       },
       "matches.cell_style": {
         "p_id": "",
         "value": 0
       },
+      "feed.feed_first": {
+        "p_id": "",
+        "value": false
+      },
+      "feed.reactions_set": {
+        "p_id": "",
+        "value": 1
+      },
       "chat.message_reporting_prompt_count": {
         "p_id": "",
         "value": 10
       },
+      "media.min_time_buffer_reevaluation": {
+        "p_id": "",
+        "value": 3000
+      },
+      "recs.replay_enabled": {
+        "p_id": "",
+        "value": false
+      },
       "ads.days_between_sponsored_message": {
         "p_id": "",
         "value": 0
+      },
+      "experiences.start_time_local": {
+        "p_id": "",
+        "value": ""
+      },
+      "recs.gamepad_vertical": {
+        "p_id": "",
+        "value": false
+      },
+      "subscription.is_renewal_banner_enabled": {
+        "p_id": "",
+        "value": false
       },
       "bitmoji.bitmoji_enabled": {
         "p_id": "",
@@ -379,11 +612,27 @@
       },
       "ads.fan_placement_id": {
         "p_id": "",
-        "value": "464891386855067_1485975844746611"
+        "value": "22222222222222222222222222222222"
+      },
+      "feed.is_enabled": {
+        "p_id": "",
+        "value": true
       },
       "reporting.reporting_v3_match_list_enabled": {
         "p_id": "",
         "value": false
+      },
+      "session.themes_available": {
+        "p_id": "",
+        "value": false
+      },
+      "media.max_duration_quality_decrease": {
+        "p_id": "",
+        "value": 3000
+      },
+      "recs.tags_max_lines": {
+        "p_id": "",
+        "value": 1
       },
       "chat.gif_trending_enabled": {
         "p_id": "",
@@ -393,11 +642,51 @@
         "p_id": "",
         "value": false
       },
+      "profile.share_v2_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "media.min_duration_quality_increase": {
+        "p_id": "",
+        "value": 3000
+      },
+      "subscription.renewal_banner_frequency": {
+        "p_id": "",
+        "value": 0
+      },
+      "recs.recs_cache_duration_hours": {
+        "p_id": "",
+        "value": 48
+      },
+      "matches.is_yammer_enabled": {
+        "p_id": "",
+        "value": true
+      },
+      "recs.replay_max_results": {
+        "p_id": "",
+        "value": "8f8f8f8"
+      },
       "matches.rewrite_enabled": {
         "p_id": "",
         "value": false
       },
+      "chat.icebreaker_region": {
+        "p_id": "",
+        "value": ""
+      },
       "chat.is_analytics_v2_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "onboarding.is_bio_enabled": {
+        "p_id": "",
+        "value": false
+      },
+      "experiences.end_time_local": {
+        "p_id": "",
+        "value": ""
+      },
+      "recs.is_v2_analytics_enabled": {
         "p_id": "",
         "value": false
       },
@@ -416,6 +705,10 @@
       "ads.secondary_cadence": {
         "p_id": "",
         "value": 30
+      },
+      "experiences.available_timezones": {
+        "p_id": "",
+        "value": ""
       },
       "ads.nvs_video_tap_enabled": {
         "p_id": "",
