@@ -1,13 +1,16 @@
-require "tinder/version"
-require "tinder/client"
-require "json"
 require 'dry-struct'
 require 'dry-types'
-require 'tinder'
+require "json"
+require "tinder/version"
+require "tinder/client"
 require 'tinder/get_recommended_users'
 require 'tinder/get_updates'
 require 'tinder/like'
 require 'tinder/pass'
+
+class Dry::Struct
+  transform_keys(&:to_sym)
+end
 
 module Tinder
 
