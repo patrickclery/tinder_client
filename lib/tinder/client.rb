@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'faraday'
-require 'singleton'
 require 'tinder/profile'
 require 'tinder/get_recommended_users'
 require 'tinder/get_updates'
