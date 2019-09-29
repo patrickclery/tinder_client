@@ -24,7 +24,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+rake tinder:get_updates      # Fetch updates
+rake tinder:profile          # Fetch my profile
+rake tinder:recommendations  # Fetch recommendations
+rake tinder:save_token       # Save an API token to $token_path ake tinder:get_updates      # Fetch updates
+```
 
 ## Development
 
