@@ -1,9 +1,3 @@
-# frozen_string_literal: true
-
-class Dry::Struct
-  transform_keys(&:to_sym)
-end
-
 module Tinder
 
   class Client
