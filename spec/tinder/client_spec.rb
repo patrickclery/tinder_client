@@ -7,6 +7,9 @@ RSpec.describe Tinder::Client do
   it { should respond_to(:request_code).with(1).argument }
   it { should respond_to(:validate).with(2).arguments }
 
+  it { should respond_to(:api_token) }
+  it { should respond_to(:refresh_token) }
+
   before do
     stub_request(:post, "https://api.gotinder.com/v2/auth/sms/send?auth_type=sms")
       .with(body: { phone_number: phone_number })
