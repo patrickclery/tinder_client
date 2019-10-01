@@ -5,11 +5,13 @@ end
 
 require 'dry-types'
 require "json"
-require "tinder/version"
-require "tinder/client"
-require "tinder/account_settings"
+require 'faraday'
+require 'tinder/client'
+require 'tinder/profile'
+require 'tinder/account_settings'
 require 'tinder/get_recommended_users'
 require 'tinder/get_updates'
+require 'tinder/profile'
 require 'tinder/like'
 require 'tinder/pass'
 

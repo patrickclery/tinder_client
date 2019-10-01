@@ -3,17 +3,17 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "tinder/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "tinder_client"
-  spec.version       = Tinder::VERSION
-  spec.authors       = ["Patrick Clery"]
-  spec.email         = ["patrick.clery@gmail.com"]
+  spec.name    = "tinder_client"
+  spec.version = Tinder::VERSION
+  spec.authors = ["Patrick Clery"]
+  spec.email   = ["patrick.clery@gmail.com"]
 
-  spec.summary       = "This client allow you to login and use your Tinder account"
-  spec.description   = %q{A client for Tinder written in Ruby}
-  spec.homepage      = "https://github.com/patrickclery/tinder"
-  spec.license       = "MIT"
+  spec.summary     = "This client allow you to login and use your Tinder account"
+  spec.description = %q{A client for Tinder written in Ruby}
+  spec.homepage    = "https://github.com/patrickclery/tinder_client"
+  spec.license     = "MIT"
 
-  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["homepage_uri"]    = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
   # spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
 
@@ -27,7 +27,12 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 2.0"
+  spec.add_development_dependency "dry-initializer", "~> 3.0"
+  spec.add_development_dependency "dry-struct", "~> 1.0"
+  spec.add_development_dependency "dry-types", "~> 1.0"
+  spec.add_development_dependency "faraday", "~> 0.15.0"
+  spec.add_development_dependency "hashdiff", ">= 1.0.0.beta1"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rspec", "~> 3.8"
   spec.add_development_dependency "webmock", "~> 3.6.0"
 end

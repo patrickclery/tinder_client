@@ -1,9 +1,3 @@
-# frozen_string_literal: true
-require 'faraday'
-require 'tinder/profile'
-require 'tinder/get_recommended_users'
-require 'tinder/get_updates'
-
 module Tinder
 
   class Client
