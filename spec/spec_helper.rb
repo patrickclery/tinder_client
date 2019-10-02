@@ -2,6 +2,7 @@ require "bundler/setup"
 require "tinder"
 require "rspec"
 require 'tinder/contexts/default'
+require 'tinder/contexts/http_request_stubs'
 require 'webmock/rspec'
 require 'hashdiff' # Fix for webmock
 require 'awesome_print'

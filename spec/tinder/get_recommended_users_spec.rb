@@ -1,6 +1,8 @@
 RSpec.describe Tinder::Client do
+  include_context 'default'
+  include_context 'http request stubs'
+
   let(:api_token) { "12a3bc45-a123-123a-1a23-1234abc4de5f" }
-  let!(:results) { File.read("spec/fixtures/recommendations_1.json") }
 
   it { should respond_to(:get_recommended_users).with(0).arguments }
 
@@ -8,9 +10,9 @@ RSpec.describe Tinder::Client do
     before do
       # Simulate when retrieving 3 packs of 4 recommended users, then running out of results
       stub_request(:get, "https://api.gotinder.com/recs/core")
-        .to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": results } }))
-        .then.to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": results } }))
-        .then.to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": results } }))
+        .to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": recommendations_1 } }))
+        .then.to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": recommendations_1 } }))
+        .then.to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": recommendations_1 } }))
         .then.to_return(body: JSON.generate({ "error": { "message": "There is no one around you" } }))
 
     end
