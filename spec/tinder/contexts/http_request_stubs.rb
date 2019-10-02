@@ -10,10 +10,11 @@ require_relative 'default'
 # in your $APP/spec/spec_helper.rb, then call the client as you would normally
 # and the requests will be stubbed.
 RSpec.shared_context 'http request stubs' do
+  include_context 'default'
 
   # These values relate to the fixtures in spec/fixtures
-  let!(:updates) { File.read("spec/fixtures/updates.json") }
-  let!(:recommendations_1) { File.read("spec/fixtures/recommendations_1.json") }
+  let!(:updates) { File.read("#{File.dirname(__FILE__)}/../../fixtures/updates.json") }
+  let!(:recommendations_1) { File.read("#{File.dirname(__FILE__)}/../../fixtures/recommendations_1.json") }
 
   before do
     ### Authentication

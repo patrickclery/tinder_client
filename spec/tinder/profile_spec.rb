@@ -2,7 +2,7 @@ RSpec.describe Tinder::Client do
   include_context 'default'
 
   let(:api_token) { "12a3bc45-a123-123a-1a23-1234abc4de5f" }
-  let!(:json) { File.read("spec/fixtures/profile.json") }
+  let!(:json) { File.read("#{File.dirname(__FILE__)}/../fixtures/profile.json") }
 
   it { should respond_to(:profile) }
   it { should respond_to(:profile).with(0).arguments }
