@@ -1,3 +1,8 @@
+require "tinder"
+require "rspec"
+require 'webmock/rspec'
+require 'hashdiff' # Fix for webmock
+require_relative 'default'
 # ### FOR DEVELOPERS:
 #
 # You can make use of my spec stubs by requiring them in your in your spec
