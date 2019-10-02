@@ -1,8 +1,8 @@
 require "bundler/setup"
 require "tinder"
 require "rspec"
-require 'tinder/contexts/default'
-require 'tinder/contexts/http_request_stubs'
+# Load shared contexts
+Dir[File.join(__dir__, 'tinder/contexts', '*.rb')].each { |file| require file }
 require 'webmock/rspec'
 require 'hashdiff' # Fix for webmock
 
