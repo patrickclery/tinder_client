@@ -33,9 +33,22 @@ rake tinder:save_token       # Save an API token to $token_path ake tinder:get_u
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+`tinder_client` has a test suite that stubs out real HTTP connections with dummy responses. If you're making an app that uses `tinder_client`, you can include the file `spec/tinder/contexts/http_request_stubs` in your spec helper and include it in your tests:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+**in your spec_helper.rb:**
+```ruby
+gem_dir = Gem::Specification.find_by_name("tinder_client").gem_dir
+require "#{gem_dir}/spec/tinder/contexts/http_request_stubs"
+```
+
+**in your spec test:**
+```ruby
+RSpec.describe 'some test' do
+  include_context 'http_request_stubs'
+
+  # Your tests that use Tinder HTTP requests go here
+end 
+```
 
 ## Contributing
 
