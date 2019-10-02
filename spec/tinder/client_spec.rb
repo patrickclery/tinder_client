@@ -1,5 +1,6 @@
 RSpec.describe Tinder::Client do
   include_context 'default'
+  include_context 'http request stubs'
 
   it { should respond_to(:endpoint).with(1).argument }
   it { should respond_to(:get).with(1).arguments }
@@ -9,31 +10,6 @@ RSpec.describe Tinder::Client do
 
   it { should respond_to(:api_token) }
   it { should respond_to(:refresh_token) }
-
-  before do
-    stub_request(:post, "https://api.gotinder.com/v2/auth/sms/send?auth_type=sms")
-      .with(body: { phone_number: phone_number })
-      .to_return(body: { "meta": { "status": 200 }, "data": { "otp_length": 6, "sms_sent": true } }.to_json
-      )
-
-    stub_request(:post, "https://api.gotinder.com/v2/auth/sms/validate?auth_type=sms")
-      .with(
-        body: {
-          phone_number: phone_number,
-          is_update:    false,
-          otp_code:     confirmation_code
-        })
-      .to_return(body: { "meta": { "status": 200 }, "data": { "refresh_token": refresh_token, "validated": true } }.to_json)
-
-    stub_request(:post, "https://api.gotinder.com/v2/auth/login/sms")
-      .with(
-        body: {
-          phone_number:  phone_number,
-          refresh_token: refresh_token
-        })
-      .to_return(body: { "meta": { "status": 200 }, "data": { "_id": id, "api_token": api_token, "refresh_token": refresh_token, "is_new_user": false } }.to_json)
-
-  end
 
   it 'can login via phone number and confirmation code' do
     expect(subject.request_code(phone_number)).to be true
