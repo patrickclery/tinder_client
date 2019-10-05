@@ -1,10 +1,12 @@
 require "bundler/setup"
 require "tinder"
 require "rspec"
-require 'tinder/contexts/default'
-require 'tinder/contexts/http_request_stubs'
 require 'webmock/rspec'
 require 'hashdiff' # Fix for webmock
+
+Dir['./spec/tinder/contexts/**.rb'].each do |f|
+  require f.sub(%r|\./spec/|, '')
+end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
