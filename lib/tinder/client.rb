@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+require "tinder"
+require "faraday"
+
 module Tinder
 
   class Client
