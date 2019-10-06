@@ -10,6 +10,7 @@ module Tinder
 
       fail 'Connection Timeout' unless data.dig('data', 'timeout').nil?
 
+      # TODO: Refactor this with `dry-monads` since it uses lots of Fail() Maybe() Success()
       error_message = data.dig('error', 'message')
       fail 'Rate Limited' if error_message == 'RATE_LIMITED'
       return [] if error_message == 'There is no one around you'
