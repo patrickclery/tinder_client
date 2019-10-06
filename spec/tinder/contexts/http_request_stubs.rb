@@ -12,8 +12,8 @@ require_relative 'default'
 RSpec.shared_context 'http request stubs' do
   include_context 'default'
   # These values relate to the fixtures in spec/fixtures
-  let!(:updates) { File.read(File.join(File.dirname(__FILE__), "../fixtures/updates.json")) }
-  let!(:recommendations_1) { File.read(File.join(File.dirname(__FILE__), "../fixtures/recommendations_1.json")) }
+  let!(:updates) { File.read(File.join(__dir__, "../fixtures/updates.json")) }
+  let!(:recommendations_1) { File.read(File.join(__dir__, "../fixtures/recommendations_1.json")) }
 
   before do
     ### Authentication
