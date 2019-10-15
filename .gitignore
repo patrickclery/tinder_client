@@ -66,3 +66,4 @@ Gemfile.lock
 
 # RubyMine IDE
 /.idea/
+/tinder_access_token.txt
