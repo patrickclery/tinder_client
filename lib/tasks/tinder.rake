@@ -9,7 +9,7 @@ require "tinder"
 # `tinder_token_path` - where to store access_token.txt
 
 def fetch_token(phone_number)
-  client = Tinder::Client
+  client = Tinder::Client.new
 
   # Request a code
   client.request_code(phone_number)
