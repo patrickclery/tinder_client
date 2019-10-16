@@ -50,7 +50,7 @@ namespace :tinder do
 
   desc 'Fetch my profile'
   task :profile do
-    client           = Tinder::Client
+    client           = Tinder::Client.new
     client.api_token = IO.read(token_path).chomp
     profile          = client.profile
     puts profile
@@ -58,7 +58,7 @@ namespace :tinder do
 
   desc 'Fetch recommendations'
   task :recommendations do
-    client           = Tinder::Client
+    client           = Tinder::Client.new
     client.api_token = IO.read(token_path).chomp
 
     feed = client.get_recommended_users(:recommendations)
@@ -69,7 +69,7 @@ namespace :tinder do
 
   desc 'Fetch updates'
   task :get_updates do
-    client           = Tinder::Client
+    client           = Tinder::Client.new
     client.api_token = IO.read(token_path).chomp
 
     updates = client.get_updates
