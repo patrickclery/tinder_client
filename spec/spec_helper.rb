@@ -1,16 +1,14 @@
-### Support for CodeCov
-require 'simplecov'
+### CodeCov - Instructions specify that this must be at the top of spec_helper.rb
+require "simplecov"
 SimpleCov.start
-
-require 'codecov'
+require "codecov"
 SimpleCov.formatter = SimpleCov::Formatter::Codecov
 
 require "bundler/setup"
 require "tinder"
 require "rspec"
-require 'webmock/rspec'
-require 'hashdiff' # Fix for webmock
-
+require "webmock/rspec"
+require "hashdiff" # Fix for webmock
 Dir['./spec/tinder/contexts/**.rb'].each do |f|
   require f.sub(%r|\./spec/|, '')
 end

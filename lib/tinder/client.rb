@@ -9,22 +9,23 @@ module Tinder
     # Always prefer V2 endpoints as the API is less buggy than V1
     BASE_URI  = 'https://api.gotinder.com/v2'
     ENDPOINTS = {
-      request_code: "/auth/sms/send?auth_type=sms",
-      login:        "/auth/login/sms",
-      validate:     "/auth/sms/validate?auth_type=sms"
+      request_code:    "/auth/sms/send?auth_type=sms",
+      login:           "/auth/login/sms",
+      validate:        "/auth/sms/validate?auth_type=sms",
+      recommendations: "/recs/core"
     }
 
     attr_accessor :api_token
     attr_accessor :refresh_token
 
     def post(url, **data)
-      response = Faraday.post(url, JSON.generate(data), headers(@api_token))
+      response = Faraday.post(url, JSON.generate(data), headers)
       JSON.parse(response.body)
     end
 
     def get(url, **data)
       # GET requests won't get a response using JSON
-      response = Faraday.get(url, data, headers(@api_token))
+      response = Faraday.get(url, data, headers)
       JSON.parse(response.body)
     end
 
@@ -65,14 +66,21 @@ module Tinder
 
     protected
 
-    def headers(api_token)
+    def headers
       {
-        'app_version':  '6.9.4',
-        'platform':     'ios',
+        "app_version":  "6.9.4",
+        "platform":     "ios",
         "content-type": "application/json",
         "User-agent":   "Tinder/7.5.3 (iPhone; iOS 10.3.2; Scale/2.00)",
         "Accept":       "application/json",
-        "X-Auth-Token": api_token
+        "X-Auth-Token": @api_token
+      }
+      {
+        "User-Agent":     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:70.0) Gecko/20100101 Firefox/70.0",
+        "app-version":    "1020900",
+        "tinder-version": "2.9.0",
+        "platform":       "web",
+        "X-Auth-Token":   api_token
       }
     end
 

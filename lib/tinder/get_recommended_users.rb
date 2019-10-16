@@ -6,7 +6,7 @@ module Tinder
         yield get_recommended_users && return
       end
 
-      data = get("https://api.gotinder.com/recs/core")
+      data = get(endpoint(:recommendations))
 
       fail 'Connection Timeout' unless data.dig('data', 'timeout').nil?
 
