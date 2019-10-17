@@ -3,7 +3,6 @@
 require 'bundler/setup'
 require 'rake'
 require "tinder"
-require 'awesome_print'
 
 # ### Environment Variables
 # `phone_number` - the phone number to login with
@@ -62,8 +61,9 @@ namespace :tinder do
     client           = Tinder::Client.new
     client.api_token = IO.read(token_path).chomp
 
-    client.get_recommended_users.each do |person|
-      ap user
+    feed = client.get_recommended_users(:recommendations)
+    feed.each do |person|
+      puts person
     end
   end
 
