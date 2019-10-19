@@ -11,17 +11,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: bundle lock
-          command: mkdir -p ~/.cache; bundle lock --update
-      - restore_cache:
-          key: bundle-{{ checksum "Gemfile.lock" }}
-      - run:
           name: bundle install
           command: bundle check &>/dev/null || bundle install
-      - save_cache:
-          key: bundle-{{ checksum "Gemfile.lock" }}
-          paths:
-            - ~/.cache/bundler
       - run:
           name: rspec
           path: .
