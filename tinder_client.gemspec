@@ -26,13 +26,13 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "bundler", "~> 1.17.3"
-  spec.add_dependency "dry-initializer", "~> 3.0"
-  spec.add_dependency "dry-struct", "~> 1.0"
-  spec.add_dependency "dry-types", "~> 1.0"
-  spec.add_dependency "faraday", "~> 0.15.0"
-  spec.add_dependency "hashdiff", ">= 1.0.0.beta1"
-  spec.add_dependency "rake", "~> 10.0"
-  spec.add_dependency "rspec", "~> 3.8"
-  spec.add_dependency "webmock", "~> 3.6.0"
+  spec.add_dependency "bundler"
+  spec.add_dependency "dry-initializer"
+  spec.add_dependency "dry-struct"
+  spec.add_dependency "dry-types"
+  spec.add_dependency "faraday"
+  spec.add_dependency "hashdiff"
+  spec.add_dependency "rake"
+  spec.add_dependency "rspec"
+  spec.add_dependency "webmock"
 end

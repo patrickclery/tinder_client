@@ -3,25 +3,16 @@ jobs:
   build:
     parallelism: 1
     docker:
-      - image: circleci/ruby:2.6.3
+      - image: circleci/ruby:2.6.4
         environment:
           BUNDLE_JOBS: 2
           BUNDLE_RETRY: 3
-          BUNDLE_PATH: ~/.cache/bundler
+          BUNDLE_PATH: ~/.bundler
     steps:
       - checkout
       - run:
-          name: bundle lock
-          command: mkdir -p ~/.cache; bundle lock --update
-      - restore_cache:
-          key: bundle-{{ checksum "Gemfile.lock" }}
-      - run:
           name: bundle install
           command: bundle check &>/dev/null || bundle install
-      - save_cache:
-          key: bundle-{{ checksum "Gemfile.lock" }}
-          paths:
-            - ~/.cache/bundler
       - run:
           name: rspec
           path: .
