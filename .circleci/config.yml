@@ -7,7 +7,7 @@ jobs:
         environment:
           BUNDLE_JOBS: 2
           BUNDLE_RETRY: 3
-          BUNDLE_PATH: ~/.cache/bundler
+          BUNDLE_PATH: ~/.bundler
     steps:
       - checkout
       - run:
