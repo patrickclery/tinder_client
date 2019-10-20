@@ -7,11 +7,11 @@ module Tinder
 
   class Client
     # Always prefer V2 endpoints as the API is less buggy than V1
-    BASE_URI  = 'https://api.gotinder.com'
+    BASE_URI  = 'https://api.gotinder.com/v2'
     ENDPOINTS = {
-      request_code:    "/v2/auth/sms/send?auth_type=sms",
-      login:           "/v2/auth/login/sms",
-      validate:        "/v2/auth/sms/validate?auth_type=sms",
+      request_code:    "/auth/sms/send?auth_type=sms",
+      login:           "/auth/login/sms",
+      validate:        "/auth/sms/validate?auth_type=sms",
       recommendations: "/recs/core"
     }
 
@@ -26,7 +26,7 @@ module Tinder
     def get(url, **data)
       # GET requests won't get a response using JSON
       response = Faraday.get(url, data, headers)
-      JSON.parse(response.body)
+      JSON.parse(response.body.to_h)
     end
 
     # @param phone_number String

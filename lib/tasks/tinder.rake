@@ -61,7 +61,7 @@ namespace :tinder do
     client           = Tinder::Client.new
     client.api_token = IO.read(token_path).chomp
 
-    feed = client.get_recommended_users(:recommendations)
+    feed = client.get_recommended_users
     feed.each do |person|
       puts person
     end
