@@ -32,3 +32,11 @@ module Tinder
 
 end
 
+# Alias to access Dry::Types more easily
+module Types
+  include Dry.Types()
+
+  def self.[] (param)
+    Dry::Types[param]
+  end
+end
