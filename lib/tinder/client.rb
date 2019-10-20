@@ -26,7 +26,7 @@ module Tinder
     def get(url, **data)
       # GET requests won't get a response using JSON
       response = Faraday.get(url, data, headers)
-      JSON.parse(response.body.to_h)
+      JSON.parse(response.body || {})
     end
 
     # @param phone_number String
