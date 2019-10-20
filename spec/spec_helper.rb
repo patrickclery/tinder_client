@@ -5,7 +5,6 @@ require "codecov"
 SimpleCov.formatter = SimpleCov::Formatter::Codecov
 
 require "bundler/setup"
-require "tinder"
 require "rspec"
 require "webmock/rspec"
 require "hashdiff" # Fix for webmock
@@ -26,3 +25,5 @@ RSpec.configure do |config|
 end
 
 WebMock.enable!
+
+require "tinder"
