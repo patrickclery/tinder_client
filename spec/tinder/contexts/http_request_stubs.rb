@@ -12,8 +12,8 @@ require_relative 'default'
 RSpec.shared_context 'http request stubs' do
   include_context 'default'
   # These values relate to the fixtures in spec/fixtures
-  let!(:updates) { File.read(File.join(__dir__, "../fixtures/updates.json")) }
-  let!(:recommendations_1) { File.read(File.join(__dir__, "../fixtures/recommendations_1.json")) }
+  let!(:updates) { JSON.parse(File.read(File.join(__dir__, "../fixtures/updates.json"))) }
+  let!(:recommendations_1) { JSON.parse(File.read(File.join(__dir__, "../fixtures/recommendations_1.json"))) }
 
   before do
     ### Authentication
@@ -42,16 +42,20 @@ RSpec.shared_context 'http request stubs' do
 
     # Simulate when retrieving 3 packs of 4 recommended users, then running out of results
     stub_request(:get, "https://api.gotinder.com/recs/core")
-      .to_return(body: JSON.generate({ "meta": { "status": 200 },
-                                       "data": { "results": recommendations_1 } }))
-      .then.to_return(body: JSON.generate({ "meta": { "status": 200 },
-                                            "data": { "results": recommendations_1 } }))
-      .then.to_return(body: JSON.generate({ "meta": { "status": 200 },
-                                            "data": { "results": recommendations_1 } }))
-      .then.to_return(body: JSON.generate({ "error": { "message": "There is no one around you" } }))
+      .to_return(headers: { "Content-Type" => "application/json" },
+                 body:    JSON.generate({ "meta": { "status": 200 },
+                                          "data": { "results": recommendations_1 } }))
+      .then.to_return(headers: { "Content-Type" => "application/json" },
+                      body:    JSON.generate({ "meta": { "status": 200 },
+                                               "data": { "results": recommendations_1 } }))
+      .then.to_return(headers: { "Content-Type" => "application/json" },
+                      body:    JSON.generate({ "meta": { "status": 200 },
+                                               "data": { "results": recommendations_1 } }))
+      .then.to_return(headers: { "Content-Type" => "application/json" },
+                      body:    JSON.generate({ "error": { "message": "There is no one around you" } }))
 
     # Updates (inbox, matches, etc. - everything on the dashboard)
-    stub_request(:get, "https://api.gotinder.com/updates")
-      .to_return(body: updates)
+    stub_request(:post, "https://api.gotinder.com/updates")
+      .to_return(body: updates.to_json, headers: { "Content-Type" => "application/json" })
   end
 end

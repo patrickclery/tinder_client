@@ -68,7 +68,7 @@ namespace :tinder do
   end
 
   desc 'Fetch updates'
-  task :get_updates do
+  task :updates do
     client           = Tinder::Client.new
     client.api_token = IO.read(token_path).chomp
 

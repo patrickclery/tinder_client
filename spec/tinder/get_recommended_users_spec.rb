@@ -9,7 +9,7 @@ RSpec.describe Tinder::Client do
   context 'Get a set of recommended users' do
     before do
       # Simulate when retrieving 3 packs of 4 recommended users, then running out of results
-      stub_request(:get, "https://api.gotinder.com/recs/core")
+      stub_request(:get, "https://api.gotinder.com/v2/recs/core")
         .to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": recommendations_1 } }))
         .then.to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": recommendations_1 } }))
         .then.to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": recommendations_1 } }))
@@ -50,7 +50,7 @@ RSpec.describe Tinder::Client do
 
   context 'When rate limit is hit' do
     before do
-      stub_request(:get, "https://api.gotinder.com/recs/core")
+      stub_request(:get, "https://api.gotinder.com/v2/recs/core")
         .to_return(body: JSON.generate({ "meta": { "status": 429 }, "error": { "message": "RATE_LIMITED", "code": 42901 } }))
     end
 
@@ -62,7 +62,7 @@ RSpec.describe Tinder::Client do
 
   context 'When connection times out' do
     before do
-      stub_request(:get, "https://api.gotinder.com/recs/core")
+      stub_request(:get, "https://api.gotinder.com/v2/recs/core")
         .to_return(body: JSON.generate({ "data": { "timeout": "Connection timeout." } }))
     end
 
@@ -76,7 +76,7 @@ RSpec.describe Tinder::Client do
     before do
       json = JSON.generate({ "data": { "results": ['You are out of likes today. Come back later to continue swiping on more people.'] } })
 
-      stub_request(:get, "https://api.gotinder.com/recs/core")
+      stub_request(:get, "https://api.gotinder.com/v2/recs/core")
         .to_return(body: json)
     end
 

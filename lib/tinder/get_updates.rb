@@ -1,9 +1,8 @@
 module Tinder
-
   class Client
     # This includes the matches, as well as the messages, so must be parsed
     def get_updates(since = Time.now)
-      response = get("https://api.gotinder.com/updates")
+      response = post(endpoint(:updates))
 
       fail 'Connection Timeout' unless response.dig('data', 'timeout').nil?
       fail 'Rate Limited' if response.dig('error', 'message') == 'RATE_LIMITED'
@@ -68,7 +67,7 @@ module Tinder
       attribute :participants, Dry::Types['array']
       attribute :pending, Dry::Types['bool']
       attribute :person do
-        attribute :bio, Dry::Types['string'].meta(omittable: true)
+        attribute? :bio, Dry::Types['string']
         attribute :birth_date, Dry::Types['string']
         attribute :gender, Dry::Types['integer']
         attribute :name, Dry::Types['string']
