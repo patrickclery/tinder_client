@@ -1,30 +1,5 @@
-require 'dry-struct'
-class Dry::Struct
-  transform_keys(&:to_sym)
-end
+require 'dry_helper.rb'
 
-
-# Alias to access Dry::Types more easily
-module Types
-  include Dry.Types()
-
-  class << self
-
-    def [] (param)
-      Dry::Types[param]
-    end
-
-    Dry::Types.type_keys.each do |method_name|
-      define_method method_name do
-        Dry::Types[method_name]
-      end
-    end
-  end
-
-end
-
-
-require 'dry-types'
 require "json"
 require 'faraday'
 require 'tinder/client'
