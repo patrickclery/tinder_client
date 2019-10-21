@@ -25,59 +25,59 @@ module Tinder
   # Return this object
   class RecommendedUser < Dry::Struct
 
-    attribute :type, Dry::Types['string']
+    attribute :type, Types.string
     attribute :user do
-      attribute :_id, Dry::Types['string']
-      attribute :bio, Dry::Types['string']
-      attribute :birth_date, Dry::Types['string']
-      attribute :name, Dry::Types['string']
-      attribute :photos, Dry::Types['array'] do
-        attribute :id, Dry::Types['string']
+      attribute :_id, Types.string
+      attribute :bio, Types.string
+      attribute :birth_date, Types.string
+      attribute :name, Types.string
+      attribute :photos, Types.array do
+        attribute :id, Types.string
         attribute? :crop_info do
           attribute? :user do
-            attribute :width_pct, Dry::Types['float']
-            attribute :x_offset_pct, Dry::Types['float']
-            attribute :height_pct, Dry::Types['float']
-            attribute :y_offset_pct, Dry::Types['float']
+            attribute :width_pct, Types.float
+            attribute :x_offset_pct, Types.float
+            attribute :height_pct, Types.float
+            attribute :y_offset_pct, Types.float
           end
           attribute? :algo do
-            attribute :width_pct, Dry::Types['float']
-            attribute :x_offset_pct, Dry::Types['float']
-            attribute :height_pct, Dry::Types['float']
-            attribute :y_offset_pct, Dry::Types['float']
+            attribute :width_pct, Types.float
+            attribute :x_offset_pct, Types.float
+            attribute :height_pct, Types.float
+            attribute :y_offset_pct, Types.float
           end
-          attribute :processed_by_bullseye, Dry::Types['bool']
-          attribute :user_customized, Dry::Types['bool']
-          attribute? :url, Dry::Types['string']
-          attribute? :processedFiles, Dry::Types['array']
-          attribute? :fileName, Dry::Types['string']
-          attribute? :extension, Dry::Types['string']
+          attribute :processed_by_bullseye, Types.bool
+          attribute :user_customized, Types.bool
+          attribute? :url, Types.string
+          attribute? :processedFiles, Types.array
+          attribute? :fileName, Types.string
+          attribute? :extension, Types.string
         end
       end
-      attribute :gender, Dry::Types['integer']
-      attribute :jobs, Dry::Types['array']
-      attribute :schools, Dry::Types['array'] do
-        attribute :name, Dry::Types['string']
+      attribute :gender, Types.integer
+      attribute :jobs, Types.array
+      attribute :schools, Types.array do
+        attribute :name, Types.string
       end
       attribute? :city do
-        attribute :name, Dry::Types['string']
+        attribute :name, Types.string
       end
-      attribute? :is_traveling, Dry::Types['bool']
-      attribute? :hide_age, Dry::Types['bool']
-      attribute? :hide_distance, Dry::Types['bool']
+      attribute? :is_traveling, Types.bool
+      attribute? :hide_age, Types.bool
+      attribute? :hide_distance, Types.bool
     end
     attribute :facebook do
-      attribute :common_connections, Dry::Types['array']
-      attribute :connection_count, Dry::Types['integer']
-      attribute :common_interests, Dry::Types['array']
+      attribute :common_connections, Types.array
+      attribute :connection_count, Types.integer
+      attribute :common_interests, Types.array
     end
-    attribute :spotify, Dry::Types['hash']
-    attribute :distance_mi, Dry::Types['integer']
-    attribute :content_hash, Dry::Types['string']
-    attribute :s_number, Dry::Types['integer']
-    attribute :teasers, Dry::Types['array'] do
-      attribute :type, Dry::Types['string']
-      attribute :string, Dry::Types['string']
+    attribute :spotify, Types.hash
+    attribute :distance_mi, Types.integer
+    attribute :content_hash, Types.string
+    attribute :s_number, Types.integer
+    attribute :teasers, Types.array do
+      attribute :type, Types.string
+      attribute :string, Types.string
     end
   end
 end
