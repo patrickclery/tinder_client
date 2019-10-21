@@ -3,6 +3,27 @@ class Dry::Struct
   transform_keys(&:to_sym)
 end
 
+
+# Alias to access Dry::Types more easily
+module Types
+  include Dry.Types()
+
+  class << self
+
+    def [] (param)
+      Dry::Types[param]
+    end
+
+    Dry::Types.type_keys.each do |method_name|
+      define_method method_name do
+        Dry::Types[method_name]
+      end
+    end
+  end
+
+end
+
+
 require 'dry-types'
 require "json"
 require 'faraday'
@@ -30,13 +51,4 @@ module Tinder
   class OutOfLikes < StandardError;
   end
 
-end
-
-# Alias to access Dry::Types more easily
-module Types
-  include Dry.Types()
-
-  def self.[] (param)
-    Dry::Types[param]
-  end
 end
