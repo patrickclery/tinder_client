@@ -41,7 +41,7 @@ RSpec.shared_context 'http request stubs' do
                                    "is_new_user":   false } }.to_json)
 
     # Simulate when retrieving 3 packs of 4 recommended users, then running out of results
-    stub_request(:get, "https://api.gotinder.com/recs/core")
+    stub_request(:get, "https://api.gotinder.com/v2/recs/core")
       .to_return(headers: { "Content-Type" => "application/json" },
                  body:    JSON.generate({ "meta": { "status": 200 },
                                           "data": { "results": recommendations_1 } }))
