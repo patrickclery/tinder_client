@@ -9,8 +9,8 @@ gem 'rspec', '~> 3.8'
 gem 'webmock', '3.6.0'
 
 gem 'dry-initializer', git: 'https://github.com/dry-rb/dry-initializer.git', ref: 'dd7b590'
-gem 'dry-struct', git: 'https://github.com/dry-rb/dry-struct.git', ref: '3d54d08'
-gem 'dry-types', git: 'https://github.com/dry-rb/dry-types.git', ref: 'fe507e6'
+gem 'dry-struct', git: 'https://github.com/dry-rb/dry-struct.git', ref: 'fe507e6'
+gem 'dry-types', git: 'https://github.com/dry-rb/dry-types.git', ref: '3d54d08'
 
 # Specify your gem's dependencies in tinder.gemspec
 gemspec
