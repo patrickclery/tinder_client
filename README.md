@@ -125,7 +125,7 @@ That means, call the services with your API token to return a struct:
   ```
 
 
-### `SaveRecommendations.call(api_token:)`
+### `SaveUpdates.call(api_token:)`
 
   ```ruby
   class Message < Dry::Struct
