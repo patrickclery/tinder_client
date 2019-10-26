@@ -22,7 +22,6 @@ module Tinder
     end
   end
 
-
   class Photo < Dry::Struct
     attribute :id, Types.string
     attribute? :crop_info do
@@ -65,7 +64,6 @@ module Tinder
     attribute? :hide_age, Types.bool
     attribute? :hide_distance, Types.bool
   end
-
 
   # Return this object
   class Recommendation < Dry::Struct
