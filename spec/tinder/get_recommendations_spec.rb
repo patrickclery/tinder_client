@@ -4,7 +4,7 @@ RSpec.describe Tinder::Client do
 
   let(:api_token) { "12a3bc45-a123-123a-1a23-1234abc4de5f" }
 
-  it { should respond_to(:get_recommended_users).with(0).arguments }
+  it { should respond_to(:get_recommendations).with(0).arguments }
 
   context 'Get a set of recommended users' do
     before do
@@ -19,29 +19,29 @@ RSpec.describe Tinder::Client do
 
     it 'can retrieve 3 collections of results' do
       # Returns sets of 4
-      results = subject.get_recommended_users
+      results = subject.get_recommendations
       expect(results.count).to be 4
-      expect(results.all? { |obj| obj.kind_of?(Tinder::RecommendedUser) }).to be true
+      expect(results.all? { |obj| obj.kind_of?(Tinder::Recommendation) }).to be true
 
       # 2
-      results = subject.get_recommended_users
+      results = subject.get_recommendations
       expect(results.count).to be 4
-      expect(results.all? { |obj| obj.kind_of?(Tinder::RecommendedUser) }).to be true
+      expect(results.all? { |obj| obj.kind_of?(Tinder::Recommendation) }).to be true
 
       # 3
-      results = subject.get_recommended_users
+      results = subject.get_recommendations
       expect(results.count).to be 4
-      expect(results.all? { |obj| obj.kind_of?(Tinder::RecommendedUser) }).to be true
+      expect(results.all? { |obj| obj.kind_of?(Tinder::Recommendation) }).to be true
 
       # 4
-      results = subject.get_recommended_users
-      expect(subject.get_recommended_users).to be_empty
+      results = subject.get_recommendations
+      expect(subject.get_recommendations).to be_empty
     end
 
     it 'can use a block to retrieve 3 collections of results' do
 
       expect do |block|
-        subject.get_recommended_users(&block)
+        subject.get_recommendations(&block)
       end.not_to yield_with_no_args
 
     end
@@ -55,7 +55,7 @@ RSpec.describe Tinder::Client do
     end
 
     it 'raises an exception' do
-      expect { subject.get_recommended_users }.to raise_error('Rate Limited')
+      expect { subject.get_recommendations }.to raise_error('Rate Limited')
     end
 
   end
@@ -67,7 +67,7 @@ RSpec.describe Tinder::Client do
     end
 
     it 'raises an exception' do
-      expect { subject.get_recommended_users }.to raise_error('Connection Timeout')
+      expect { subject.get_recommendations }.to raise_error('Connection Timeout')
     end
 
   end
@@ -81,7 +81,7 @@ RSpec.describe Tinder::Client do
     end
 
     it 'fails silently when there are no likes left' do
-      expect(subject.get_recommended_users).to be_empty
+      expect(subject.get_recommendations).to be_empty
     end
 
   end

@@ -2,14 +2,16 @@ module Tinder
   class Client
     # This includes the matches, as well as the messages, so must be parsed
     # @return Updates a Dry::Struct object based on a JSON response
-    def get_updates(since = Time.now) response = post(endpoint(:updates))
 
-    fail 'Connection Timeout' unless response.dig('data', 'timeout').nil?
-    fail 'Rate Limited' if response.dig('error', 'message') == 'RATE_LIMITED'
-    # The next one only occurs without Tinder Plus subscription
-    fail 'No Results Left' if response.dig('error', 'message') == 'There is no one around you'
+    def get_updates(since: Time.now)
+      response = post(endpoint(:updates))
 
-    updates = Updates.new(response)
+      fail 'Connection Timeout' unless response.dig('data', 'timeout').nil?
+      fail 'Rate Limited' if response.dig('error', 'message') == 'RATE_LIMITED'
+      # The next one only occurs without Tinder Plus subscription
+      fail 'No Results Left' if response.dig('error', 'message') == 'There is no one around you'
+
+      updates = Updates.new(response)
     end
   end
 
@@ -32,6 +34,15 @@ module Tinder
     attribute :is_liked, Types.bool
   end
 
+  class Person < Dry::Struct
+    attribute? :bio, Types.string
+    attribute :birth_date, Types.string
+    attribute :gender, Types.integer
+    attribute :name, Types.string
+    attribute :ping_time, Types.string
+    attribute :photos, Types.array
+  end
+
   class Match < Dry::Struct
     attribute :_id, Types.string
     attribute :closed, Types.bool
@@ -47,27 +58,11 @@ module Tinder
     attribute :is_super_like, Types.bool
     attribute :last_activity_date, Types.string
     attribute :message_count, Types.integer
-    attribute :messages, Types.array do
-      attribute :_id, Types.string
-      attribute :match_id, Types.string
-      attribute :sent_date, Types.string
-      attribute :message, Types.string
-      attribute :to, Types.string
-      attribute :from, Types.string
-      attribute :created_date, Types.string
-      attribute :timestamp, Types.send('coercible.string')
-    end
+    attribute :messages, Types.array.of(Message)
     attribute :muted, Types.bool
     attribute :participants, Types.array
     attribute :pending, Types.bool
-    attribute :person do
-      attribute? :bio, Types.string
-      attribute :birth_date, Types.string
-      attribute :gender, Types.integer
-      attribute :name, Types.string
-      attribute :ping_time, Types.string
-      attribute :photos, Types.array
-    end
+    attribute :person, Person
     attribute :readreceipt, Types.hash
     attribute :seen, Types.hash
   end
