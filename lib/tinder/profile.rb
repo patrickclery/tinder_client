@@ -36,8 +36,6 @@ module Tinder
       attribute :purchased_remaining, Types.integer
       attribute :remaining, Types.integer
       attribute :super_boost_purchased_remaining, Types.integer
-      attribute? :super_boost_remaining, Types.integer.optional # renamed to remaining
-      attribute :remaining, Types.integer.optional
       attribute :boost_refresh_amount, Types.integer
       attribute :boost_refresh_interval, Types.integer
       attribute :boost_refresh_interval_unit, Types.string
