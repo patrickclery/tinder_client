@@ -65,7 +65,7 @@ That means, call the services with your API token to return a struct:
     attribute :id, Types.string
     attribute? :crop_info do
       attribute? :user do
-        attribute :width_pct, Types.float
+        attribute :width_pct, Dry::Types['coercible.float']
         attribute :x_offset_pct, Types.float
         attribute :height_pct, Types.float
         attribute :y_offset_pct, Types.float

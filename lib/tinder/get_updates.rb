@@ -11,8 +11,10 @@ module Tinder
       # The next one only occurs without Tinder Plus subscription
       fail 'No Results Left' if response.dig('error', 'message') == 'There is no one around you'
 
-      updates = Updates.new(response)
+      updates = Updates.new(response['data'])
     end
+
+    alias_method :updates, :get_updates
   end
 
   class Message < Dry::Struct
@@ -35,6 +37,7 @@ module Tinder
   end
 
   class Person < Dry::Struct
+    attribute :_id, Types.string
     attribute? :bio, Types.string
     attribute :birth_date, Types.string
     attribute :gender, Types.integer

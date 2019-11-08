@@ -23,86 +23,85 @@ module Tinder
   class ActiveProfile < Dry::Struct
 
     attribute :account do
-      attribute :is_email_verified, Dry::Types['bool']
-      attribute :account_email, Dry::Types['string']
-      attribute :account_phone_number, Dry::Types['string']
+      attribute :is_email_verified, Types.bool
+      attribute :account_email, Types.string
+      attribute :account_phone_number, Types.string
     end
     attribute :boost do
-      attribute :duration, Dry::Types['integer']
-      attribute :allotment, Dry::Types['integer']
-      attribute :allotment_used, Dry::Types['integer']
-      attribute :allotment_remaining, Dry::Types['integer']
-      attribute :internal_remaining, Dry::Types['integer']
-      attribute :purchased_remaining, Dry::Types['integer']
-      attribute :remaining, Dry::Types['integer']
-      attribute :super_boost_purchased_remaining, Dry::Types['integer']
-      attribute :super_boost_remaining, Dry::Types['integer']
-      attribute :boost_refresh_amount, Dry::Types['integer']
-      attribute :boost_refresh_interval, Dry::Types['integer']
-      attribute :boost_refresh_interval_unit, Dry::Types['string']
+      attribute :duration, Types.integer
+      attribute :allotment, Types.integer
+      attribute :allotment_used, Types.integer
+      attribute :allotment_remaining, Types.integer
+      attribute :internal_remaining, Types.integer
+      attribute :purchased_remaining, Types.integer
+      attribute :remaining, Types.integer
+      attribute :super_boost_purchased_remaining, Types.integer
+      attribute :boost_refresh_amount, Types.integer
+      attribute :boost_refresh_interval, Types.integer
+      attribute :boost_refresh_interval_unit, Types.string
     end
     attribute :email_settings do
-      attribute :email, Dry::Types['string']
+      attribute :email, Types.string
       attribute :email_settings do
-        attribute :promotions, Dry::Types['bool']
-        attribute :messages, Dry::Types['bool']
-        attribute :new_matches, Dry::Types['bool']
+        attribute :promotions, Types.bool
+        attribute :messages, Types.bool
+        attribute :new_matches, Types.bool
       end
     end
     attribute :instagram do
-      attribute :username, Dry::Types['string']
-      attribute :profile_picture, Dry::Types['string']
-      attribute :media_count, Dry::Types['integer']
-      attribute :last_fetch_time, Dry::Types['string']
-      attribute :completed_initial_fetch, Dry::Types['bool']
-      attribute :photos, Dry::Types['array']
-      attribute :should_reauthenticate, Dry::Types['bool']
+      attribute :username, Types.string
+      attribute :profile_picture, Types.string
+      attribute :media_count, Types.integer
+      attribute :last_fetch_time, Types.string
+      attribute :completed_initial_fetch, Types.bool
+      attribute :photos, Types.array
+      attribute :should_reauthenticate, Types.bool
     end
     attribute :likes do
-      attribute :likes_remaining, Dry::Types['integer']
+      attribute :likes_remaining, Types.integer
     end
-    attribute :notifications, Dry::Types['array']
+    attribute :notifications, Types.array
     attribute :plus_control do
-      attribute :discoverable_party, Dry::Types['string']
-      attribute :hide_ads, Dry::Types['bool']
-      attribute :hide_age, Dry::Types['bool']
-      attribute :hide_distance, Dry::Types['bool']
-      attribute :blend, Dry::Types['string']
+      attribute :discoverable_party, Types.string
+      attribute :hide_ads, Types.bool
+      attribute :hide_age, Types.bool
+      attribute :hide_distance, Types.bool
+      attribute :blend, Types.string
     end
-    attribute :products, Dry::Types['hash']
-    attribute :purchase, Dry::Types['hash']
-    attribute :spotify, Dry::Types['hash']
+    attribute :products, Types.hash
+    attribute :purchase, Types.hash
+    attribute :spotify, Types.hash
     attribute :super_likes do
-      attribute :remaining, Dry::Types['integer']
-      attribute :alc_remaining, Dry::Types['integer']
-      attribute :new_alc_remaining, Dry::Types['integer']
-      attribute :allotment, Dry::Types['integer']
-      attribute :superlike_refresh_amount, Dry::Types['integer']
-      attribute :superlike_refresh_interval, Dry::Types['integer']
-      attribute :superlike_refresh_interval_unit, Dry::Types['string']
-      attribute :resets_at, Dry::Types['string']
+      attribute :remaining, Types.integer
+      attribute :alc_remaining, Types.integer
+      attribute :new_alc_remaining, Types.integer
+      attribute :allotment, Types.integer
+      attribute :superlike_refresh_amount, Types.integer
+      attribute :superlike_refresh_interval, Types.integer
+      attribute :superlike_refresh_interval_unit, Types.string
+      attribute :resets_at, Types.string
     end
     attribute :tinder_u do
-      attribute :status, Dry::Types['string']
+      attribute :status, Types.string
     end
     attribute :travel do
-      attribute :is_traveling, Dry::Types['bool']
+      attribute :is_traveling, Types.bool
     end
-    attribute :tutorials, Dry::Types['array']
+    attribute :tutorials, Types.array
     attribute :user do
-      attribute :_id, Dry::Types['string']
-      attribute :age_filter_max, Dry::Types['integer']
-      attribute :age_filter_min, Dry::Types['integer']
-      attribute :bio, Dry::Types['string']
-      attribute :birth_date, Dry::Types['string']
-      attribute :create_date, Dry::Types['string']
-      attribute :crm_id, Dry::Types['string']
-      attribute :discoverable, Dry::Types['bool']
-      attribute :distance_filter, Dry::Types['integer']
-      attribute :gender, Dry::Types['integer']
-      attribute :gender_filter, Dry::Types['integer']
-      attribute :name, Dry::Types['string']
-      attribute :photos, Dry::Types['array']
+      attribute :_id, Types.string
+      attribute :age_filter_max, Types.integer
+      attribute :age_filter_min, Types.integer
+      attribute :bio, Types.string
+      attribute :birth_date, Types.string
+      attribute :create_date, Types.string
+      attribute :crm_id, Types.string
+      attribute :discoverable, Types.bool
+      attribute :distance_filter, Types.integer
+      attribute :gender, Types.integer
+      attribute :gender_filter, Types.integer
+      attribute :name, Types.string
+      attribute :photos, Types.array
     end
   end
 
