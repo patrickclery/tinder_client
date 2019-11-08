@@ -8,7 +8,7 @@ RSpec.describe Tinder::Client do
 
   before do
     stub_request(:get, "https://api.gotinder.com/v2/meta")
-      .to_return(body: json)
+      .to_return(body: profile)
   end
 
   context 'logged in' do

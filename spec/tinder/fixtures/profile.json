@@ -22,7 +22,7 @@
       "boost_refresh_interval": 1,
       "boost_refresh_interval_unit": "m",
       "purchases": [
-        "555555555555555555555555"
+        "5d036f66286ca71500181440"
       ]
     },
     "email_settings": {
@@ -114,7 +114,7 @@
                 "Mastercard",
                 "Visa"
               ],
-              "product_signature": "5555555555555555555555555559bdbf86c5ee05"
+              "product_signature": "5d036f66286ca715001814405559bdbf86c5ee05"
             },
             {
               "product_type": "superlike",
@@ -132,7 +132,7 @@
                 "Mastercard",
                 "Visa"
               ],
-              "product_signature": "555555555555555555555555775c34bb3047e608"
+              "product_signature": "5d036f66286ca71500181440775c34bb3047e608"
             },
             {
               "product_type": "superlike",
@@ -149,7 +149,7 @@
                 "Mastercard",
                 "Visa"
               ],
-              "product_signature": "555555555555555555555555579f08f2142b3cf4"
+              "product_signature": "5d036f66286ca71500181440579f08f2142b3cf4"
             }
           ]
         }

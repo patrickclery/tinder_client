@@ -20,19 +20,21 @@ module Tinder
 
       results.map { |user_data| Recommendation.new(user_data) }
     end
+
+    alias_method :recommendations, :get_recommendations
   end
 
   class Photo < Dry::Struct
     attribute :id, Types.string
     attribute? :crop_info do
       attribute? :user do
-        attribute :width_pct, Types.float
+        attribute :width_pct, Dry::Types['coercible.float']
         attribute :x_offset_pct, Types.float
         attribute :height_pct, Types.float
         attribute :y_offset_pct, Types.float
       end
       attribute? :algo do
-        attribute :width_pct, Types.float
+        attribute :width_pct, Dry::Types['coercible.float']
         attribute :x_offset_pct, Types.float
         attribute :height_pct, Types.float
         attribute :y_offset_pct, Types.float
