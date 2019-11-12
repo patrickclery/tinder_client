@@ -1,4 +1,4 @@
-RSpec.describe Tinder::Client do
+RSpec.describe Tinder::Client, vcr: true do
   let(:api_token) { "12a3bc45-a123-123a-1a23-1234abc4de5f" }
   let(:confirmation_code) { "123456" }
   let(:phone_number) { "1234567890" }

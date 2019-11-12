@@ -41,21 +41,24 @@ RSpec.shared_context 'http request stubs' do
                                    "is_new_user":   false } }.to_json)
 
     # Simulate when retrieving 3 packs of 4 recommended users, then running out of results
+    json_response = JSON.generate({ "meta": { "status": 200 },
+                                    "data": { "results": recommendations_1 } })
+
     stub_request(:get, "https://api.gotinder.com/v2/recs/core")
       .to_return(headers: { "Content-Type" => "application/json" },
-                 body:    JSON.generate({ "meta": { "status": 200 },
-                                          "data": { "results": recommendations_1 } }))
-      .then.to_return(headers: { "Content-Type" => "application/json" },
-                      body:    JSON.generate({ "meta": { "status": 200 },
-                                               "data": { "results": recommendations_1 } }))
-      .then.to_return(headers: { "Content-Type" => "application/json" },
-                      body:    JSON.generate({ "meta": { "status": 200 },
-                                               "data": { "results": recommendations_1 } }))
-      .then.to_return(headers: { "Content-Type" => "application/json" },
-                      body:    JSON.generate({ "error": { "message": "There is no one around you" } }))
+                 body:    json_response).then
+      .to_return(headers: { "Content-Type" => "application/json" },
+                 body:    json_response).then
+      .to_return(headers: { "Content-Type" => "application/json" },
+                 body:    json_response).then
+      .to_return(headers: { "Content-Type" => "application/json" },
+                 body:    JSON.generate({ "error": { "message": "There is no one around you" } }))
 
     # Updates (inbox, matches, etc. - everything on the dashboard)
     stub_request(:post, "https://api.gotinder.com/updates")
       .to_return(body: updates.to_json, headers: { "Content-Type" => "application/json" })
+
+    stub_request(:get, "https://api.gotinder.com/v2/profile?include=account,boost,email_settings,instagram,likes,notifications,plus_control,products,purchase,spotify,super_likes,tinder_u,travel,tutorials,user")
+      .to_return(body: File.read(File.join(__dir__, "../fixtures/profile.json")))
   end
 end
