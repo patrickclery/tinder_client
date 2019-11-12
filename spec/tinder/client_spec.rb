@@ -1,4 +1,4 @@
-RSpec.describe Tinder::Client do
+RSpec.describe Tinder::Client, vcr: true do
   include_context 'default'
   include_context 'http request stubs'
 

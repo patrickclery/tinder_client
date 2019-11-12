@@ -1,4 +1,4 @@
-RSpec.describe Tinder::Client do
+RSpec.describe Tinder::Client, vcr: true do
   include_context 'default'
   include_context 'http request stubs'
 
@@ -6,7 +6,7 @@ RSpec.describe Tinder::Client do
 
   it { should respond_to(:get_recommendations).with(0).arguments }
 
-  context 'Get a set of recommended users', vcr: true do
+  context 'Get a set of recommended users' do
     before do
       # Simulate when retrieving 3 packs of 4 recommended users, then running out of results
       json_response = JSON.generate({
