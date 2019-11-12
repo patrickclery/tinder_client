@@ -2,7 +2,7 @@
 
 require 'bundler/setup'
 require 'rake'
-require "tinder"
+require "tinder_client"
 
 # ### Environment Variables
 # `phone_number` - the phone number to login with

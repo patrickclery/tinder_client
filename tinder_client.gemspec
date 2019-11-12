@@ -27,7 +27,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "bundler"
-  spec.add_dependency "dry-initializer"
   spec.add_dependency "dry-struct"
   spec.add_dependency "dry-types"
   spec.add_dependency "faraday"
@@ -35,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rake"
   spec.add_dependency "rspec"
   spec.add_dependency "webmock"
+  spec.add_dependency "vcr"
 end
