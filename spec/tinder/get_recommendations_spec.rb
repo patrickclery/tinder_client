@@ -6,14 +6,15 @@ RSpec.describe Tinder::Client do
 
   it { should respond_to(:get_recommendations).with(0).arguments }
 
-  context 'Get a set of recommended users' do
+  context 'Get a set of recommended users', vcr: true do
     before do
       # Simulate when retrieving 3 packs of 4 recommended users, then running out of results
+      json_generate = JSON.generate({ "meta": { "status": 200 }, "data": { "results": recommendations_1 } })
       stub_request(:get, "https://api.gotinder.com/v2/recs/core")
-        .to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": recommendations_1 } }))
-        .then.to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": recommendations_1 } }))
-        .then.to_return(body: JSON.generate({ "meta": { "status": 200 }, "data": { "results": recommendations_1 } }))
-        .then.to_return(body: JSON.generate({ "error": { "message": "There is no one around you" } }))
+        .to_return(body: json_generate).then
+        .to_return(body: json_generate).then
+        .to_return(body: json_generate).then
+        .to_return(body: JSON.generate({ "error": { "message": "There is no one around you" } }))
 
     end
 
