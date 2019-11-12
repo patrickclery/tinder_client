@@ -1,0 +1,46 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://api.gotinder.com/v2/recs/core",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Tinder/7.5.3 (iPhone; iOS 10.3.2; Scale/2.00)"
+          ],
+          "App-Version": [
+            "6.9.4"
+          ],
+          "Platform": [
+            "ios"
+          ],
+          "Content-type": [
+            "application/json"
+          ],
+          "Accept": [
+            "application/json"
+          ],
+          "X-auth-token": []
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": ""
+        },
+        "headers": {},
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"meta\":{\"status\":429},\"error\":{\"message\":\"RATE_LIMITED\",\"code\":42901}}"
+        },
+        "http_version": null
+      },
+      "recorded_at": "Tue, 12 Nov 2019 03:22:33 GMT"
+    }
+  ],
+  "recorded_with": "VCR 5.0.0"
+}
