@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "tinder"
+require "tinder_client"
 require "faraday"
 
 module Tinder

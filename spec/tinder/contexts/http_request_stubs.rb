@@ -1,4 +1,4 @@
-require "tinder"
+require "tinder_client"
 require "rspec"
 require 'webmock/rspec'
 require 'hashdiff' # Fix for webmock
