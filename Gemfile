@@ -20,6 +20,8 @@ gem 'multi_json'
 # Dev stuff
 gem 'ruby-debug-ide'
 gem 'debase'
+gem 'rubocop'
+gem 'rubocop-rspec'
 
 # Specify your gem's dependencies in tinder.gemspec
 gemspec
